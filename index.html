@@ -11,7 +11,6 @@
       --text: #18181b;
       --muted: #71717a;
       --line: #e7e5e4;
-      --soft: #fafaf9;
       --accent-2: #f3f4f6;
       --max: 1040px;
     }
@@ -233,10 +232,27 @@
       transform: translateY(-1px);
     }
 
+    .btn.pending {
+      color: var(--muted);
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+
+    .btn.pending:hover {
+      background: transparent;
+      transform: none;
+    }
+
     .btn.primary {
       background: var(--text);
       color: #fff;
       border-color: var(--text);
+    }
+
+    .btn.primary.pending {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--line);
     }
 
     .priority-strip,
@@ -320,6 +336,12 @@
       margin-bottom: 4px;
       color: var(--text);
       font-size: 15px;
+    }
+
+    .placeholder-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .changelog {
@@ -418,7 +440,7 @@
           <div class="platform-meta">团队内部分发</div>
           <div class="platform-meta">SKILL + references</div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="wpsComate" href="WPS_COMATE_DOWNLOAD_URL">下载</a>
+            <a class="btn primary download-link" data-download="wpsComate" href="#release">下载</a>
             <a class="btn" href="#guide">说明</a>
           </div>
         </article>
@@ -431,7 +453,7 @@
           <div class="platform-meta">规则文件维护</div>
           <div class="platform-meta">SKILL + examples</div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="claudeSkill" href="CLAUDE_SKILL_DOWNLOAD_URL">下载</a>
+            <a class="btn primary download-link" data-download="claudeSkill" href="#release">下载</a>
             <a class="btn" href="#examples">示例</a>
           </div>
         </article>
@@ -444,7 +466,7 @@
           <div class="platform-meta">跨平台验证</div>
           <div class="platform-meta">Instructions + Knowledge</div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="gpts" href="GPTS_DOWNLOAD_URL">下载</a>
+            <a class="btn primary download-link" data-download="gpts" href="#release">下载</a>
             <a class="btn" href="#guide">说明</a>
           </div>
         </article>
@@ -456,7 +478,7 @@
           <div class="platform-meta">长文本比对</div>
           <div class="platform-meta">system + usage</div>
           <div class="actions">
-            <a class="btn download-link" data-download="kimi" href="KIMI_TEMPLATE_URL">模板</a>
+            <a class="btn download-link" data-download="kimi" href="#release">模板</a>
           </div>
         </article>
 
@@ -467,7 +489,7 @@
           <div class="platform-meta">Bot 流程集成</div>
           <div class="platform-meta">persona + workflow</div>
           <div class="actions">
-            <a class="btn download-link" data-download="coze" href="COZE_TEMPLATE_URL">模板</a>
+            <a class="btn download-link" data-download="coze" href="#release">模板</a>
           </div>
         </article>
 
@@ -478,10 +500,11 @@
           <div class="platform-meta">工作流接入</div>
           <div class="platform-meta">system + variables</div>
           <div class="actions">
-            <a class="btn download-link" data-download="dify" href="DIFY_TEMPLATE_URL">模板</a>
+            <a class="btn download-link" data-download="dify" href="#release">模板</a>
           </div>
         </article>
       </div>
+      <p class="placeholder-note">当前下载与示例入口已预留真实链接位置；未接入前不会跳转到无效页面。</p>
     </section>
 
     <!-- priority -->
@@ -588,17 +611,17 @@
         <div class="example-item">
           <h3>Compact</h3>
           <p>适合群聊同步与会议前快速确认。</p>
-          <a class="btn download-link" data-download="compactExample" href="COMPACT_EXAMPLE_URL">查看示例</a>
+          <a class="btn download-link" data-download="compactExample" href="#release">查看示例</a>
         </div>
         <div class="example-item">
           <h3>Standard</h3>
           <p>适合日常评审与方案自检。</p>
-          <a class="btn download-link" data-download="standardExample" href="STANDARD_EXAMPLE_URL">查看示例</a>
+          <a class="btn download-link" data-download="standardExample" href="#release">查看示例</a>
         </div>
         <div class="example-item">
           <h3>Full</h3>
           <p>适合归档、培训与规则复盘。</p>
-          <a class="btn download-link" data-download="fullExample" href="FULL_EXAMPLE_URL">查看示例</a>
+          <a class="btn download-link" data-download="fullExample" href="#release">查看示例</a>
         </div>
       </div>
     </section>
@@ -667,20 +690,34 @@
 
   <script>
     const DOWNLOAD_LINKS = {
-      wpsComate: "WPS_COMATE_DOWNLOAD_URL",
-      claudeSkill: "CLAUDE_SKILL_DOWNLOAD_URL",
-      gpts: "GPTS_DOWNLOAD_URL",
-      kimi: "KIMI_TEMPLATE_URL",
-      coze: "COZE_TEMPLATE_URL",
-      dify: "DIFY_TEMPLATE_URL",
-      compactExample: "COMPACT_EXAMPLE_URL",
-      standardExample: "STANDARD_EXAMPLE_URL",
-      fullExample: "FULL_EXAMPLE_URL"
+      wpsComate: "",
+      claudeSkill: "",
+      gpts: "",
+      kimi: "",
+      coze: "",
+      dify: "",
+      compactExample: "",
+      standardExample: "",
+      fullExample: ""
     };
 
     document.querySelectorAll("[data-download]").forEach((link) => {
       const key = link.dataset.download;
-      if (DOWNLOAD_LINKS[key]) link.href = DOWNLOAD_LINKS[key];
+      const url = DOWNLOAD_LINKS[key];
+
+      if (url) {
+        link.href = url;
+        if (/^https?:\/\//.test(url)) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+        return;
+      }
+
+      link.classList.add("pending");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("title", "待替换真实链接");
+      link.addEventListener("click", (event) => event.preventDefault());
     });
 
     document.querySelector("[data-copy-guide]")?.addEventListener("click", async (event) => {
