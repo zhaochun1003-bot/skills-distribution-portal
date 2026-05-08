@@ -7,21 +7,19 @@
   <style>
     :root {
       --bg: #ffffff;
-      --text: #09090b;
-      --muted: #5f636c;
-      --soft: #f7f7f8;
+      --text: #111113;
+      --muted: #676b75;
+      --faint: #8b909a;
       --line: #e4e4e7;
-      --line-strong: #d4d4d8;
-      --surface: rgba(255,255,255,0.92);
+      --soft: #f7f7f8;
+      --soft-2: #fbfbfc;
       --ink: #18181b;
-      --green: #34d399;
       --blue: #38bdf8;
+      --green: #34d399;
       --violet: #a78bfa;
-      --amber: #fbbf24;
-      --max: 1180px;
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
+      --max: 1040px;
+      --radius: 24px;
+      --radius-sm: 16px;
     }
 
     * { box-sizing: border-box; }
@@ -30,64 +28,43 @@
     body {
       margin: 0;
       color: var(--text);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(56,189,248,0.12), transparent 34rem),
+        radial-gradient(circle at 10% 12%, rgba(52,211,153,0.10), transparent 26rem),
+        radial-gradient(circle at 88% 8%, rgba(167,139,250,0.10), transparent 24rem),
+        #fff;
       font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.65;
-      letter-spacing: 0;
+      line-height: 1.68;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(24,24,27,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(24,24,27,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, black 0, black 520px, transparent 980px);
+      z-index: -1;
     }
 
     a { color: inherit; }
 
-    .page {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .page::before,
-    .page::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .page::before {
-      height: 680px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(59,130,246,0.12), transparent 35%),
-        radial-gradient(circle at 18% 28%, rgba(16,185,129,0.12), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(168,85,247,0.10), transparent 26%);
-    }
-
-    .page::after {
-      background-image:
-        linear-gradient(to right, rgba(24,24,27,0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(24,24,27,0.045) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at top, black 36%, transparent 74%);
-      opacity: 0.9;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
+    .wrap {
       width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
     }
 
     /* navigation */
     .topbar {
-      position: relative;
-      z-index: 4;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
       padding: 22px 0;
     }
 
@@ -95,12 +72,10 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      min-width: 0;
       color: var(--ink);
       text-decoration: none;
       font-size: 15px;
-      font-weight: 650;
-      letter-spacing: -0.01em;
+      font-weight: 700;
       white-space: nowrap;
     }
 
@@ -108,13 +83,13 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 3px;
-      width: 38px;
-      height: 38px;
-      padding: 9px;
+      width: 36px;
+      height: 36px;
+      padding: 8px;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: rgba(255,255,255,0.92);
-      box-shadow: 0 10px 28px -18px rgba(24,24,27,0.4);
+      box-shadow: 0 14px 28px -22px rgba(24,24,27,0.45);
     }
 
     .brand-mark span { border-radius: 3px; }
@@ -126,48 +101,43 @@
     .nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 26px;
     }
 
     .nav a {
-      color: #666b75;
+      color: #696e78;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
-      transition: color .18s ease;
+      font-weight: 650;
     }
 
     .nav a:hover { color: var(--ink); }
 
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    /* buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 104px;
       min-height: 42px;
-      padding: 11px 17px;
-      border-radius: 999px;
+      padding: 11px 16px;
       border: 1px solid var(--line);
+      border-radius: 999px;
       background: #fff;
       color: #3f3f46;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 650;
       line-height: 1;
+      font-weight: 700;
       white-space: nowrap;
-      box-shadow: 0 10px 28px -22px rgba(24,24,27,0.45);
+      box-shadow: 0 10px 26px -24px rgba(24,24,27,0.55);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
 
     .btn:hover {
       transform: translateY(-1px);
       background: #fafafa;
-      border-color: var(--line-strong);
+      border-color: #d4d4d8;
     }
 
     .btn.primary {
@@ -176,37 +146,31 @@
       color: #fff;
     }
 
-    .btn.primary:hover { background: #27272a; }
-    .btn.subtle { color: #666b75; box-shadow: none; }
+    .btn.primary:hover { background: #2b2b30; }
     .btn.pending { cursor: not-allowed; opacity: 0.72; }
 
     /* hero */
     .hero {
-      position: relative;
-      z-index: 1;
-      padding: 56px 0 34px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 0 54px;
       text-align: center;
     }
 
-    .hero h1 {
-      max-width: 900px;
-      margin: 0 auto;
+    h1 {
+      margin: 0;
       color: var(--text);
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 1.08;
-      font-weight: 760;
-      letter-spacing: -0.055em;
-    }
-
-    .hero h1 span {
-      display: block;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -0.052em;
     }
 
     .lead {
-      max-width: 760px;
+      max-width: 720px;
       margin: 22px auto 0;
       color: var(--muted);
-      font-size: clamp(17px, 2vw, 20px);
+      font-size: clamp(16px, 2vw, 19px);
       line-height: 1.85;
       font-weight: 450;
     }
@@ -214,18 +178,9 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: center;
       gap: 12px;
       margin-top: 30px;
-    }
-
-    .hero-note {
-      max-width: 760px;
-      margin: 22px auto 0;
-      color: #737780;
-      font-size: 14px;
-      line-height: 1.8;
     }
 
     .quick-strip {
@@ -233,27 +188,27 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 34px auto 0;
+      margin: 30px auto 0;
     }
 
     .quick-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       padding: 9px 13px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      color: #52525b;
+      background: rgba(255,255,255,0.88);
+      color: #515763;
       font-size: 14px;
-      font-weight: 650;
-      box-shadow: 0 12px 32px -26px rgba(24,24,27,0.45);
+      font-weight: 700;
+      box-shadow: 0 12px 30px -26px rgba(24,24,27,0.45);
       backdrop-filter: blur(10px);
     }
 
     .dot {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
       background: var(--green);
     }
@@ -261,1269 +216,616 @@
     .dot.blue { background: var(--blue); }
     .dot.violet { background: var(--violet); }
 
-    /* product preview */
-    .product-preview {
-      position: relative;
-      z-index: 1;
-      margin-top: 44px;
-      padding-bottom: 42px;
-    }
-
-    .preview-glow {
-      position: absolute;
-      inset: -30px 70px auto;
-      height: 150px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(52,211,153,0.34), rgba(56,189,248,0.28), rgba(167,139,250,0.30));
-      filter: blur(54px);
-      pointer-events: none;
-    }
-
-    .app-shell {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: rgba(255,255,255,0.95);
-      padding: 12px;
-      box-shadow: 0 28px 100px -36px rgba(24,24,27,0.22);
-      backdrop-filter: blur(16px);
-    }
-
-    .app-inner {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: #f7f7f8;
-    }
-
-    .window-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .traffic {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .traffic span {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-    }
-
-    .traffic span:nth-child(1) { background: #fda4af; }
-    .traffic span:nth-child(2) { background: #fcd34d; }
-    .traffic span:nth-child(3) { background: #86efac; }
-
-    .window-title,
-    .search {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fafafa;
-      color: #71717a;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 7px 11px;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 260px minmax(0,1fr);
-      gap: 12px;
-      padding: 12px;
-    }
-
-    .side-panel,
-    .preview-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #fff;
-      box-shadow: 0 10px 34px -28px rgba(24,24,27,0.45);
-    }
-
-    .side-panel {
-      padding: 18px;
-    }
-
-    .panel-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .panel-icon {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--blue), var(--violet));
-      color: #fff;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.32);
-    }
-
-    .panel-icon svg,
-    .mini-icon svg,
-    .metric-icon svg,
-    .example-icon svg { width: 18px; height: 18px; }
-
-    .panel-title {
-      margin: 0;
-      color: var(--ink);
-      font-size: 15px;
-      font-weight: 720;
-      line-height: 1.3;
-    }
-
-    .panel-sub {
-      margin: 2px 0 0;
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .side-menu {
-      display: grid;
-      gap: 8px;
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 12px;
-      border-radius: 15px;
-      color: #5f636c;
+    .boundary {
+      max-width: 720px;
+      margin: 20px auto 0;
+      color: #777c86;
       font-size: 14px;
-      font-weight: 650;
+      line-height: 1.8;
     }
 
-    .menu-item.active {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .menu-item span:last-child {
-      color: inherit;
-      opacity: 0.75;
-      font-size: 12px;
-    }
-
-    .side-note {
-      margin-top: 18px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(135deg, #fafafa, #fff);
-    }
-
-    .side-note strong {
-      display: block;
-      color: #3f3f46;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    .progress {
-      height: 8px;
-      border-radius: 999px;
-      background: #f0f0f1;
-      overflow: hidden;
-    }
-
-    .progress span {
-      display: block;
-      width: 82%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--green), var(--blue));
-    }
-
-    .side-note p {
-      margin: 10px 0 0;
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.6;
-    }
-
-    .preview-main {
-      display: grid;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 12px;
-    }
-
-    .preview-card {
-      padding: 18px;
-    }
-
-    .metric-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .metric-label {
-      color: #71717a;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .metric-value {
-      margin-top: 4px;
-      color: var(--ink);
-      font-size: 34px;
-      line-height: 1;
-      font-weight: 780;
-      letter-spacing: -0.04em;
-    }
-
-    .metric-icon,
-    .mini-icon,
-    .example-icon {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      background: #ecfdf5;
-      color: #059669;
-    }
-
-    .bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 7px;
-      height: 90px;
-      margin-top: 20px;
-    }
-
-    .bars span {
-      width: 14px;
-      border-radius: 999px;
-      background: #e4e4e7;
-    }
-
-    .bars span:nth-child(3) { background: #7dd3fc; }
-    .bars span:nth-child(4) { background: #c4b5fd; }
-    .bars span:nth-child(5) { background: var(--ink); }
-    .bars span:nth-child(6) { background: #86efac; }
-
-    .flow-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 165px;
-    }
-
-    .flow-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .flow-head h3 {
-      margin: 4px 0 0;
-      color: var(--ink);
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: 720;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #fafafa;
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 650;
-      white-space: nowrap;
-    }
-
-    .flow-line {
-      position: relative;
-      min-height: 90px;
-      overflow: hidden;
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 18% 50%, rgba(59,130,246,0.10), transparent 32%),
-        radial-gradient(circle at 82% 50%, rgba(168,85,247,0.10), transparent 32%),
-        linear-gradient(to right, rgba(24,24,27,0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(24,24,27,0.05) 1px, transparent 1px);
-      background-size: auto, auto, 32px 32px, 32px 32px;
-    }
-
-    .flow-line::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 36px;
-      right: 36px;
-      height: 1px;
-      background: linear-gradient(90deg, #d4d4d8, #7dd3fc, #c4b5fd, #86efac);
-    }
-
-    .flow-node {
-      position: absolute;
-      top: 50%;
-      display: grid;
-      place-items: center;
-      width: 46px;
-      height: 46px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: #fff;
-      color: #52525b;
-      transform: translateY(-50%);
-      box-shadow: 0 10px 24px -18px rgba(24,24,27,0.45);
-    }
-
-    .flow-node svg { width: 18px; height: 18px; }
-    .flow-node:nth-child(1) { left: 24px; }
-    .flow-node:nth-child(2) { left: 27%; color: #0284c7; background: #f0f9ff; border-color: #bae6fd; }
-    .flow-node:nth-child(3) { left: 53%; color: #7c3aed; background: #f5f3ff; border-color: #ddd6fe; }
-    .flow-node:nth-child(4) { right: 24px; color: #059669; background: #ecfdf5; border-color: #bbf7d0; }
-
-    .workspace {
-      display: grid;
-      grid-template-columns: 1.22fr .9fr;
-      gap: 12px;
-    }
-
-    .mini-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .mini-head h3 {
-      margin: 4px 0 0;
-      font-size: 17px;
-      line-height: 1.35;
-      color: var(--ink);
-    }
-
-    .avatar-stack {
-      display: flex;
-      margin-left: 8px;
-    }
-
-    .avatar-stack span {
-      width: 32px;
-      height: 32px;
-      margin-left: -8px;
-      border: 2px solid #fff;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .avatar-stack span:nth-child(2) { background: var(--violet); }
-    .avatar-stack span:nth-child(3) { background: var(--green); }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0,1fr));
-      gap: 8px;
-    }
-
-    .day {
-      min-height: 92px;
-      padding: 8px;
-      border-radius: 18px;
-      background: #f7f7f8;
-      text-align: center;
-      color: #a1a1aa;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .day-box {
-      display: grid;
-      place-items: center;
-      height: 58px;
-      margin-top: 8px;
-      border: 1px dashed var(--line-strong);
-      border-radius: 14px;
-      background: #fff;
-    }
-
-    .day-box.color { border: 0; background: linear-gradient(180deg, #fff, #e0f2fe); }
-    .day-box.violet { background: linear-gradient(180deg, #fff, #ede9fe); }
-    .day-box.green { background: linear-gradient(180deg, #fff, #d1fae5); }
-    .day-box.amber { background: linear-gradient(180deg, #fff, #fef3c7); }
-    .day-mark { width: 28px; height: 28px; border-radius: 12px; background: var(--blue); }
-    .day-mark.violet { background: var(--violet); }
-    .day-mark.green { background: var(--green); }
-    .day-mark.amber { border: 1px solid #fde68a; background: #fff; box-shadow: 0 4px 14px -10px rgba(24,24,27,0.5); }
-
-    .automation-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .automation-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: #fafafa;
-      min-width: 0;
-    }
-
-    .automation-item strong {
-      display: block;
-      color: var(--ink);
-      font-size: 14px;
-      line-height: 1.35;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .automation-item span {
-      display: block;
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .mini-icon.blue { color: #0284c7; background: #f0f9ff; }
-    .mini-icon.violet { color: #7c3aed; background: #f5f3ff; }
-    .mini-icon.green { color: #059669; background: #ecfdf5; }
-
-    /* shared sections */
+    /* sections */
     .section {
-      position: relative;
-      z-index: 1;
-      padding: 72px 0;
+      padding: 54px 0;
+      border-top: 1px solid rgba(228,228,231,0.82);
     }
+
+    .section.compact { padding: 42px 0; }
 
     .section-head {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) auto;
-      gap: 28px;
+      display: flex;
       align-items: end;
-      margin-bottom: 28px;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
     }
 
     .section-title {
-      max-width: 760px;
       margin: 0;
       color: var(--text);
-      font-size: clamp(31px, 4.6vw, 52px);
-      line-height: 1.18;
-      font-weight: 760;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.2;
+      font-weight: 800;
       letter-spacing: -0.045em;
     }
 
     .section-desc {
-      max-width: 720px;
-      margin: 14px 0 0;
+      max-width: 680px;
+      margin: 10px 0 0;
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.85;
+      font-size: 16px;
+      line-height: 1.82;
     }
 
+    /* platform list */
     .platform-list {
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
     .platform-row {
       display: grid;
-      grid-template-columns: 1.05fr 1.35fr auto;
-      gap: 22px;
+      grid-template-columns: 240px minmax(0,1fr) 238px;
+      gap: 20px;
       align-items: center;
-      padding: 22px;
+      min-height: 92px;
+      padding: 18px 20px;
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #fff;
-      box-shadow: 0 12px 34px -30px rgba(24,24,27,0.44);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 12px 30px -28px rgba(24,24,27,0.5);
     }
 
-    .platform-row.featured {
+    .platform-row.primary {
       border-color: #d4d4d8;
       background: linear-gradient(135deg, #fff, #f8fafc);
     }
 
-    .platform-name {
-      min-width: 0;
-    }
-
-    .platform-name h3 {
+    .platform-main h3 {
       margin: 0;
       color: var(--ink);
-      font-size: 21px;
+      font-size: 20px;
       line-height: 1.3;
-      font-weight: 760;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      letter-spacing: -0.018em;
     }
 
-    .badge {
+    .tag {
       display: inline-flex;
-      margin-top: 10px;
-      padding: 6px 10px;
+      align-items: center;
+      justify-content: center;
+      width: 82px;
+      height: 25px;
+      margin-top: 9px;
       border-radius: 999px;
       background: #f4f4f5;
       color: #52525b;
       font-size: 12px;
-      font-weight: 720;
+      font-weight: 800;
       line-height: 1;
     }
 
-    .badge.primary { background: #18181b; color: #fff; }
-    .badge.blue { background: #e0f2fe; color: #0369a1; }
-    .badge.violet { background: #ede9fe; color: #6d28d9; }
+    .tag.dark { background: var(--ink); color: #fff; }
+    .tag.blue { background: #e0f2fe; color: #0369a1; }
+    .tag.violet { background: #ede9fe; color: #6d28d9; }
 
     .platform-copy {
-      display: grid;
-      gap: 6px;
       min-width: 0;
     }
 
-    .platform-copy strong {
+    .platform-copy strong,
+    .template-copy strong {
+      display: block;
       color: #27272a;
       font-size: 15px;
       line-height: 1.55;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .platform-copy span {
+    .platform-copy span,
+    .template-copy span {
+      display: block;
+      margin-top: 3px;
       color: #71717a;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.65;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .actions {
+    .platform-actions {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
     }
 
-    .guide-grid,
-    .example-grid,
-    .release-grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .guide-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .guide-panel,
-    .example-card,
-    .release-card {
+    .more-templates {
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #fff;
-      padding: 24px;
-      box-shadow: 0 12px 34px -32px rgba(24,24,27,0.5);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.78);
+      overflow: hidden;
     }
 
-    .guide-panel h3,
-    .example-card h3,
-    .release-card h3 {
-      margin: 0;
-      color: var(--ink);
-      font-size: 19px;
-      line-height: 1.35;
-      font-weight: 740;
-      letter-spacing: -0.02em;
-    }
-
-    .simple-list {
-      margin: 16px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .simple-list li {
-      display: grid;
-      grid-template-columns: 10px minmax(0,1fr);
-      gap: 11px;
-      align-items: start;
-      color: #5f636c;
-      font-size: 15px;
-      line-height: 1.78;
-    }
-
-    .simple-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      margin-top: 10px;
-      border-radius: 999px;
-      background: var(--ink);
-    }
-
-    .decision-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .decision-item {
+    .more-templates summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 13px 0;
-      border-top: 1px solid var(--line);
-      color: #52525b;
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .decision-item strong {
+      gap: 18px;
+      min-height: 74px;
+      padding: 18px 20px;
+      cursor: pointer;
+      list-style: none;
       color: var(--ink);
-      white-space: nowrap;
+      font-weight: 800;
+      font-size: 18px;
     }
 
+    .more-templates summary::-webkit-details-marker { display: none; }
+
+    .more-templates summary span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .chevron {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #71717a;
+      transition: transform .18s ease;
+    }
+
+    .more-templates[open] .chevron { transform: rotate(180deg); }
+
+    .template-list {
+      display: grid;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .template-row {
+      display: grid;
+      grid-template-columns: 240px minmax(0,1fr) 238px;
+      gap: 20px;
+      align-items: center;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .template-row:first-child { border-top: 0; }
+
+    .template-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    /* choice */
+    .choice-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .choice-item {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      box-shadow: 0 10px 28px -27px rgba(24,24,27,0.45);
+    }
+
+    .choice-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .choice-item span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* examples */
     .example-grid {
+      display: grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
     }
 
     .example-card {
       display: grid;
-      gap: 16px;
-      align-content: start;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      box-shadow: 0 10px 28px -27px rgba(24,24,27,0.45);
     }
 
-    .example-icon {
-      color: #0284c7;
-      background: #f0f9ff;
+    .example-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 800;
     }
-
-    .example-card:nth-child(2) .example-icon { color: #7c3aed; background: #f5f3ff; }
-    .example-card:nth-child(3) .example-icon { color: #059669; background: #ecfdf5; }
 
     .example-card p {
+      min-height: 48px;
       margin: 0;
-      color: #5f636c;
-      font-size: 15px;
-      line-height: 1.78;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    .release-grid {
-      grid-template-columns: 1fr 1.15fr;
-      align-items: start;
+    .example-card .btn {
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* release */
+    .release {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .release-card {
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .release-card h3 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 800;
     }
 
     .release-meta {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
     }
 
-    .meta-box {
-      padding: 16px;
-      border-radius: 18px;
-      background: #f7f7f8;
-    }
-
-    .meta-box span {
+    .meta span {
       display: block;
-      color: #71717a;
+      color: var(--faint);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 750;
     }
 
-    .meta-box strong {
+    .meta strong {
       display: block;
-      margin-top: 5px;
+      margin-top: 4px;
       color: var(--ink);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.45;
     }
 
-    .changelog {
+    .log-list {
       display: grid;
-      gap: 0;
-      margin-top: 18px;
+      gap: 9px;
     }
 
     .log-item {
       display: grid;
-      grid-template-columns: 120px 80px minmax(0,1fr);
-      gap: 12px;
-      padding: 14px 0;
-      border-top: 1px solid var(--line);
-      color: #5f636c;
-      font-size: 14px;
-      line-height: 1.68;
+      grid-template-columns: 98px 64px minmax(0,1fr);
+      gap: 10px;
+      align-items: start;
     }
 
     .log-item strong {
       color: var(--ink);
-      font-weight: 720;
+      font-weight: 800;
     }
 
-    .footer-cta {
-      position: relative;
-      z-index: 1;
-      padding: 28px 0 80px;
-    }
-
-    .footer-panel {
-      overflow: hidden;
-      border-radius: var(--radius-xl);
-      border: 1px solid #18181b;
-      background: #18181b;
-      color: #fff;
-    }
-
-    .footer-panel-inner {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0,1fr) auto;
-      gap: 32px;
-      align-items: center;
-      padding: 46px;
-    }
-
-    .footer-panel-inner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(59,130,246,0.26), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(168,85,247,0.22), transparent 25%),
-        radial-gradient(circle at 50% 90%, rgba(16,185,129,0.20), transparent 25%);
-      pointer-events: none;
-    }
-
-    .footer-panel h2,
-    .footer-panel p,
-    .footer-actions {
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-panel h2 {
-      margin: 0;
-      font-size: clamp(32px, 4vw, 48px);
-      line-height: 1.2;
-      font-weight: 760;
-      letter-spacing: -0.04em;
-    }
-
-    .footer-panel p {
-      max-width: 700px;
-      margin: 14px 0 0;
-      color: rgba(255,255,255,0.72);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .footer-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-actions .btn {
-      border-color: rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      box-shadow: none;
-    }
-
-    .footer-actions .btn.primary {
-      border-color: #fff;
-      background: #fff;
-      color: #18181b;
-    }
-
-    .site-footer {
-      position: relative;
-      z-index: 1;
+    .footer {
+      padding: 24px 0 40px;
       border-top: 1px solid var(--line);
       color: #71717a;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 650;
     }
 
-    .site-footer .container {
+    .footer .wrap {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 28px 0;
+      gap: 18px;
     }
 
-    @media (max-width: 980px) {
-      .container { width: min(100% - 32px, var(--max)); }
+    @media (max-width: 900px) {
+      .wrap { width: min(var(--max), calc(100% - 32px)); }
       .nav { display: none; }
       .topbar { padding: 16px 0; }
-      .top-actions .btn.subtle { display: none; }
-      .hero { padding-top: 38px; }
-      .hero h1 { letter-spacing: -0.045em; }
-      .preview-grid,
-      .metrics,
-      .workspace,
+      .hero { padding: 42px 0 44px; }
+      h1 { font-size: 42px; line-height: 1.14; letter-spacing: -0.045em; }
       .platform-row,
-      .guide-grid,
+      .template-row,
+      .release {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .platform-actions {
+        justify-content: flex-start;
+      }
+      .platform-copy strong,
+      .platform-copy span,
+      .template-copy strong,
+      .template-copy span {
+        white-space: normal;
+      }
+      .choice-list,
       .example-grid,
-      .release-grid,
-      .section-head,
-      .footer-panel-inner {
+      .release-meta {
         grid-template-columns: 1fr;
       }
-      .actions,
-      .footer-actions {
-        justify-content: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
+      .section-head {
+        align-items: start;
+        flex-direction: column;
       }
-      .platform-row { align-items: start; }
-      .window-title,
-      .search { display: none; }
-      .calendar-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
-      .section { padding: 54px 0; }
-      .footer-panel-inner { padding: 32px 24px; }
+      .release {
+        gap: 28px;
+      }
+      .footer .wrap {
+        flex-direction: column;
+      }
     }
 
-    @media (max-width: 640px) {
-      .brand span:last-child { max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
-      .brand-mark { width: 34px; height: 34px; padding: 8px; }
-      .top-actions .btn { min-height: 38px; padding: 10px 13px; font-size: 13px; }
-      .hero h1 { font-size: 40px; line-height: 1.12; }
-      .lead { font-size: 16px; line-height: 1.85; }
-      .app-shell { border-radius: 24px; padding: 8px; }
-      .app-inner { border-radius: 20px; }
-      .side-panel,
-      .preview-card,
-      .guide-panel,
-      .example-card,
-      .release-card { border-radius: 22px; padding: 18px; }
-      .flow-node:nth-child(2) { left: 31%; }
-      .flow-node:nth-child(3) { left: 55%; }
-      .calendar-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .release-meta,
-      .log-item { grid-template-columns: 1fr; }
-      .site-footer .container { align-items: flex-start; flex-direction: column; }
+    @media (max-width: 520px) {
+      .brand span:last-child { display: none; }
+      .btn { min-width: 96px; min-height: 40px; padding: 10px 14px; font-size: 13px; }
+      .topbar .btn { min-width: auto; }
+      .hero-actions { gap: 10px; }
+      .quick-strip { align-items: center; flex-direction: column; }
+      .quick-pill { width: 100%; justify-content: center; }
+      .platform-row,
+      .template-row { padding: 18px; }
+      .platform-actions { width: 100%; }
+      .platform-actions .btn { flex: 1; min-width: 0; }
+      .more-templates summary { align-items: flex-start; flex-direction: column; }
+      .chevron { position: absolute; right: 18px; }
+      .log-item { grid-template-columns: 1fr; gap: 2px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- navigation -->
-    <header class="container topbar">
-      <a class="brand" href="#">
-        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-        <span>体验审核助手</span>
-      </a>
+  <header class="wrap topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span>体验审核助手</span>
+    </a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#platforms">平台</a>
+      <a href="#choice">选择</a>
+      <a href="#examples">示例</a>
+      <a href="#release">版本</a>
+    </nav>
+    <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
+  </header>
 
-      <nav class="nav" aria-label="页面导航">
-        <a href="#platforms">入口</a>
-        <a href="#guide">说明</a>
-        <a href="#examples">示例</a>
-        <a href="#release">版本</a>
-      </nav>
-
-      <div class="top-actions">
-        <a class="btn subtle" href="#guide">查看说明</a>
+  <main>
+    <!-- hero -->
+    <section class="wrap hero">
+      <h1>WPS 界面体验审核助手</h1>
+      <p class="lead">用于界面方案自检、结构化评审、体验风险识别与修改方向整理。默认从 WPS Comate 进入。</p>
+      <div class="hero-actions">
         <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
+        <a class="btn" href="#platforms">查看全部平台</a>
+        <a class="btn" href="#choice">查看说明</a>
       </div>
-    </header>
+      <div class="quick-strip" aria-label="入口建议">
+        <div class="quick-pill"><span class="dot"></span>默认推荐：WPS Comate</div>
+        <div class="quick-pill"><span class="dot violet"></span>规则维护：Claude Skill</div>
+        <div class="quick-pill"><span class="dot blue"></span>快速验证：GPTs</div>
+      </div>
+      <p class="boundary">它帮助识别问题和整理建议，但不替团队做“通过、否决、必须修改”的最终拍板。</p>
+    </section>
 
-    <main>
-      <!-- hero -->
-      <section class="container hero">
-        <h1>
-          WPS 界面体验审核助手
-          <span>先选入口，再开始评审</span>
-        </h1>
-        <p class="lead">面向界面方案自检、结构化评审、体验风险识别与修改方向整理。默认使用 WPS Comate，让团队快速得到清晰、可讨论、可推进的评审结果。</p>
-        <div class="hero-actions">
-          <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
-          <a class="btn" href="#platforms">查看全部平台</a>
+    <!-- platform list -->
+    <section class="wrap section" id="platforms">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">平台入口</h2>
+          <p class="section-desc">优先选择 WPS Comate。只有需要维护规则或验证跨平台效果时，再进入 Claude Skill 与 GPTs。</p>
         </div>
-        <div class="quick-strip" aria-label="推荐入口">
-          <div class="quick-pill"><span class="dot"></span>默认推荐：WPS Comate</div>
-          <div class="quick-pill"><span class="dot blue"></span>规则维护：Claude Skill</div>
-          <div class="quick-pill"><span class="dot violet"></span>快速验证：GPTs</div>
-        </div>
-        <p class="hero-note">它会帮助识别问题、提示风险并整理建议方向，但不替团队做“通过、否决、必须修改”的最终拍板。</p>
-      </section>
+      </div>
 
-      <!-- product-style preview -->
-      <section class="container product-preview" aria-label="入口概览">
-        <div class="preview-glow" aria-hidden="true"></div>
-        <div class="app-shell">
-          <div class="app-inner">
-            <div class="window-bar">
-              <div class="traffic" aria-hidden="true"><span></span><span></span><span></span></div>
-              <div class="window-title">Skills Distribution Portal / Workspace</div>
-              <div class="search">选择平台入口...</div>
+      <div class="platform-list">
+        <article class="platform-row primary">
+          <div class="platform-main">
+            <h3>WPS Comate</h3>
+            <span class="tag dark">主入口</span>
+          </div>
+          <div class="platform-copy">
+            <strong>团队直接使用的默认入口。</strong>
+            <span>适合设计、产品、业务和试点成员进行日常方案自检。</span>
+          </div>
+          <div class="platform-actions">
+            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#choice" href="#choice">进入</a>
+            <a class="btn" href="#choice">说明</a>
+          </div>
+        </article>
+
+        <article class="platform-row">
+          <div class="platform-main">
+            <h3>Claude Skill</h3>
+            <span class="tag violet">规则维护</span>
+          </div>
+          <div class="platform-copy">
+            <strong>用于维护规则文件和 references。</strong>
+            <span>适合负责规则更新、版本管理和跨平台复用的人。</span>
+          </div>
+          <div class="platform-actions">
+            <a class="btn primary download-link" data-download="claudeSkill" data-fallback="#choice" href="#choice">下载</a>
+            <a class="btn" href="#examples">示例</a>
+          </div>
+        </article>
+
+        <article class="platform-row">
+          <div class="platform-main">
+            <h3>GPTs</h3>
+            <span class="tag blue">快速验证</span>
+          </div>
+          <div class="platform-copy">
+            <strong>用于快速验证跨平台复用效果。</strong>
+            <span>适合轻量试跑 Instructions + Knowledge 版本。</span>
+          </div>
+          <div class="platform-actions">
+            <a class="btn primary download-link" data-download="gpts" data-fallback="#choice" href="#choice">下载</a>
+            <a class="btn" href="#choice">参考</a>
+          </div>
+        </article>
+
+        <details class="more-templates">
+          <summary>
+            <div>更多模板 <span>Kimi / Coze / Dify 先按模板预留，不进入主决策区。</span></div>
+            <div class="chevron" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="template-list">
+            <div class="template-row">
+              <div class="template-title">Kimi / Kimi+</div>
+              <div class="template-copy">
+                <strong>长文本输入与规则比对模板。</strong>
+                <span>先保留 system + usage 模板，等真实场景稳定后再投入。</span>
+              </div>
+              <div class="platform-actions">
+                <a class="btn download-link" data-download="kimi" data-fallback="#choice" href="#choice">使用模板</a>
+                <a class="btn" href="#choice">参考</a>
+              </div>
             </div>
 
-            <div class="preview-grid">
-              <aside class="side-panel">
-                <div class="panel-head">
-                  <div class="panel-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 12l7-4"/><path d="M12 12v9"/><path d="M12 12L5 8"/></svg>
-                  </div>
-                  <div>
-                    <p class="panel-title">分发工作台</p>
-                    <p class="panel-sub">1 个主版本 · 2 个优先入口</p>
-                  </div>
-                </div>
+            <div class="template-row">
+              <div class="template-title">Coze / 扣子</div>
+              <div class="template-copy">
+                <strong>Bot 场景与流程集成模板。</strong>
+                <span>先保留 persona + workflow + KB 模板。</span>
+              </div>
+              <div class="platform-actions">
+                <a class="btn download-link" data-download="coze" data-fallback="#choice" href="#choice">使用模板</a>
+                <a class="btn" href="#choice">参考</a>
+              </div>
+            </div>
 
-                <div class="side-menu">
-                  <div class="menu-item active"><span>WPS Comate</span><span>主版本</span></div>
-                  <div class="menu-item"><span>Claude Skill</span><span>规则</span></div>
-                  <div class="menu-item"><span>GPTs</span><span>验证</span></div>
-                  <div class="menu-item"><span>模板预留</span><span>3</span></div>
-                </div>
-
-                <div class="side-note">
-                  <strong>当前建议</strong>
-                  <div class="progress"><span></span></div>
-                  <p>先进入 WPS Comate；规则需要文件化维护时，再同步 Claude Skill。</p>
-                </div>
-              </aside>
-
-              <div class="preview-main">
-                <div class="metrics">
-                  <div class="preview-card">
-                    <div class="metric-top">
-                      <div>
-                        <div class="metric-label">当前主入口</div>
-                        <div class="metric-value">WPS</div>
-                      </div>
-                      <div class="metric-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16V9"/><path d="M12 16V7"/><path d="M16 16v-4"/></svg>
-                      </div>
-                    </div>
-                    <div class="bars" aria-hidden="true">
-                      <span style="height:32px"></span><span style="height:54px"></span><span style="height:46px"></span><span style="height:72px"></span><span style="height:86px"></span><span style="height:58px"></span>
-                    </div>
-                  </div>
-
-                  <div class="preview-card flow-card">
-                    <div class="flow-head">
-                      <div>
-                        <div class="metric-label">评审流转</div>
-                        <h3>从方案输入到风险提示，再到修改方向沉淀</h3>
-                      </div>
-                      <span class="chip">默认短版输出</span>
-                    </div>
-                    <div class="flow-line" aria-hidden="true">
-                      <div class="flow-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></div>
-                      <div class="flow-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-5"/><path d="M21 12a9 9 0 1 1-9-9"/></svg></div>
-                      <div class="flow-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
-                      <div class="flow-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="workspace">
-                  <div class="preview-card">
-                    <div class="mini-head">
-                      <div>
-                        <div class="metric-label">输出日历</div>
-                        <h3>三种结果形态对应不同使用场景</h3>
-                      </div>
-                      <div class="avatar-stack" aria-hidden="true"><span></span><span></span><span></span></div>
-                    </div>
-                    <div class="calendar-grid" aria-hidden="true">
-                      <div class="day">短版<div class="day-box"></div></div>
-                      <div class="day">群聊<div class="day-box color"><span class="day-mark"></span></div></div>
-                      <div class="day">日常<div class="day-box violet"><span class="day-mark violet"></span></div></div>
-                      <div class="day">评审<div class="day-box green"><span class="day-mark green"></span></div></div>
-                      <div class="day">归档<div class="day-box amber"><span class="day-mark amber"></span></div></div>
-                      <div class="day">培训<div class="day-box"></div></div>
-                      <div class="day">复盘<div class="day-box"></div></div>
-                    </div>
-                  </div>
-
-                  <div class="preview-card">
-                    <div class="metric-label">维护状态</div>
-                    <h3 style="margin:4px 0 0;font-size:17px;line-height:1.35">Core 协议统一，平台差异独立适配</h3>
-                    <div class="automation-list">
-                      <div class="automation-item">
-                        <div class="mini-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></div>
-                        <div><strong>Core 规则</strong><span>角色边界与输出结构</span></div>
-                      </div>
-                      <div class="automation-item">
-                        <div class="mini-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></div>
-                        <div><strong>Adapter</strong><span>平台格式与知识承载</span></div>
-                      </div>
-                      <div class="automation-item">
-                        <div class="mini-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-                        <div><strong>静态发布</strong><span>替换真实链接即可分发</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="template-row">
+              <div class="template-title">Dify</div>
+              <div class="template-copy">
+                <strong>工作流接入与系统变量模板。</strong>
+                <span>先保留 system + workflow + variables 模板。</span>
+              </div>
+              <div class="platform-actions">
+                <a class="btn download-link" data-download="dify" data-fallback="#choice" href="#choice">使用模板</a>
+                <a class="btn" href="#choice">参考</a>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- platform list -->
-      <section class="container section" id="platforms">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">选择使用入口</h2>
-            <p class="section-desc">平台列表从“文档清单”收敛成“产品入口”。先用 WPS Comate 进入团队生产场景，Claude Skill 与 GPTs 用于规则维护和跨平台验证。</p>
-          </div>
-          <a class="btn" href="#guide">查看说明</a>
-        </div>
-
-        <div class="platform-list">
-          <article class="platform-row featured">
-            <div class="platform-name">
-              <h3>WPS Comate</h3>
-              <span class="badge primary">默认推荐</span>
-            </div>
-            <div class="platform-copy">
-              <strong>团队内部分发与日常评审主入口。</strong>
-              <span>适合直接给设计、产品、业务同学使用，承载 SKILL.md 与 references。</span>
-            </div>
-            <div class="actions">
-              <a class="btn primary download-link" data-download="wpsComate" data-fallback="#guide" href="#guide">进入</a>
-              <a class="btn" href="#guide">说明</a>
-            </div>
-          </article>
-
-          <article class="platform-row">
-            <div class="platform-name">
-              <h3>Claude Skill</h3>
-              <span class="badge violet">规则维护</span>
-            </div>
-            <div class="platform-copy">
-              <strong>适合把规则文件化、版本化维护。</strong>
-              <span>承载 SKILL.md、references 与 examples，便于跨平台复用和审阅。</span>
-            </div>
-            <div class="actions">
-              <a class="btn primary download-link" data-download="claudeSkill" data-fallback="#guide" href="#guide">下载</a>
-              <a class="btn" href="#examples">示例</a>
-            </div>
-          </article>
-
-          <article class="platform-row">
-            <div class="platform-name">
-              <h3>GPTs</h3>
-              <span class="badge blue">快速验证</span>
-            </div>
-            <div class="platform-copy">
-              <strong>适合快速验证跨平台复用效果。</strong>
-              <span>使用 Instructions + Knowledge 承载，迁移门槛低，适合轻量试跑。</span>
-            </div>
-            <div class="actions">
-              <a class="btn primary download-link" data-download="gpts" data-fallback="#guide" href="#guide">下载</a>
-              <a class="btn" href="#guide">参考</a>
-            </div>
-          </article>
-
-          <article class="platform-row">
-            <div class="platform-name">
-              <h3>Kimi / Kimi+</h3>
-              <span class="badge">模板预留</span>
-            </div>
-            <div class="platform-copy">
-              <strong>适合长文本输入与规则比对。</strong>
-              <span>先保留 system + usage 模板，等真实使用场景稳定后再投入。</span>
-            </div>
-            <div class="actions">
-              <a class="btn download-link" data-download="kimi" data-fallback="#guide" href="#guide">使用模板</a>
-              <a class="btn" href="#guide">参考</a>
-            </div>
-          </article>
-
-          <article class="platform-row">
-            <div class="platform-name">
-              <h3>Coze / 扣子</h3>
-              <span class="badge">模板预留</span>
-            </div>
-            <div class="platform-copy">
-              <strong>适合 Bot 场景与流程集成。</strong>
-              <span>先保留 persona + workflow + KB 模板，不作为优先生产入口。</span>
-            </div>
-            <div class="actions">
-              <a class="btn download-link" data-download="coze" data-fallback="#guide" href="#guide">使用模板</a>
-              <a class="btn" href="#guide">参考</a>
-            </div>
-          </article>
-
-          <article class="platform-row">
-            <div class="platform-name">
-              <h3>Dify</h3>
-              <span class="badge">模板预留</span>
-            </div>
-            <div class="platform-copy">
-              <strong>适合工作流接入与系统变量管理。</strong>
-              <span>先保留 system + workflow + variables 模板，后续按需求推进。</span>
-            </div>
-            <div class="actions">
-              <a class="btn download-link" data-download="dify" data-fallback="#guide" href="#guide">使用模板</a>
-              <a class="btn" href="#guide">参考</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- guide -->
-      <section class="container section" id="guide">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">使用说明</h2>
-            <p class="section-desc">只保留第一次进入最需要的信息：先选入口，再校准输出，最后按平台差异维护。</p>
-          </div>
-        </div>
-
-        <div class="guide-grid">
-          <div class="guide-panel">
-            <h3>先选哪个版本</h3>
-            <div class="decision-list">
-              <div class="decision-item"><strong>团队直接使用</strong><span>选 WPS Comate</span></div>
-              <div class="decision-item"><strong>维护规则文件</strong><span>选 Claude Skill</span></div>
-              <div class="decision-item"><strong>快速跨平台验证</strong><span>选 GPTs</span></div>
-              <div class="decision-item"><strong>其余平台</strong><span>先使用模板</span></div>
-            </div>
-          </div>
-
-          <div class="guide-panel">
-            <h3>如何维护</h3>
-            <ul class="simple-list">
-              <li>Core 只维护一套：角色边界、输出结构与短版约束统一管理。</li>
-              <li>WPS Comate 持续作为主生产版本，优先验证真实团队使用效果。</li>
-              <li>各平台只维护格式差异、导入方式与知识承载方式。</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- examples -->
-      <section class="container section" id="examples">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">输出示例</h2>
-            <p class="section-desc">保留 Compact / Standard / Full 三档入口，帮助团队在不同场景下快速对齐输出颗粒度。</p>
-          </div>
-        </div>
-
-        <div class="example-grid">
-          <article class="example-card">
-            <div class="example-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h7"/></svg>
-            </div>
-            <h3>Compact</h3>
-            <p>适合群聊同步、会议前快速确认与轻量风险提示。</p>
-            <a class="btn download-link" data-download="compactExample" data-fallback="#examples" href="#examples">查看示例</a>
-          </article>
-
-          <article class="example-card">
-            <div class="example-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
-            </div>
-            <h3>Standard</h3>
-            <p>适合 WPS Comate 日常评审、方案自检与团队讨论。</p>
-            <a class="btn download-link" data-download="standardExample" data-fallback="#examples" href="#examples">查看示例</a>
-          </article>
-
-          <article class="example-card">
-            <div class="example-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
-            </div>
-            <h3>Full</h3>
-            <p>适合评审归档、规则培训、问题复盘与跨团队沉淀。</p>
-            <a class="btn download-link" data-download="fullExample" data-fallback="#examples" href="#examples">查看示例</a>
-          </article>
-        </div>
-      </section>
-
-      <!-- release info -->
-      <section class="container section" id="release">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">版本信息</h2>
-            <p class="section-desc">页面已按静态站点发布方式整理，真实下载链接可在底部脚本中集中替换。</p>
-          </div>
-        </div>
-
-        <div class="release-grid">
-          <div class="release-card">
-            <h3>当前版本</h3>
-            <div class="release-meta">
-              <div class="meta-box"><span>版本</span><strong>v0.9.3</strong></div>
-              <div class="meta-box"><span>更新时间</span><strong>2026-05-08</strong></div>
-              <div class="meta-box"><span>主版本</span><strong>WPS Comate</strong></div>
-              <div class="meta-box"><span>最近更新</span><strong>切换为浅色产品入口风格，优化中文排版。</strong></div>
-            </div>
-          </div>
-
-          <div class="release-card">
-            <h3>更新记录</h3>
-            <div class="changelog">
-              <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.3</strong><span>改为浅色产品入口页，强化首屏决策与中文阅读节奏。</span></div>
-              <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.2</strong><span>尝试深色玻璃风格，保留平台入口和版本区。</span></div>
-              <div class="log-item"><strong>2026-05-07</strong><strong>v0.9.0</strong><span>平台分发页改为极简布局，补充推荐平台、示例区与发布信息。</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- final callout -->
-      <section class="container footer-cta">
-        <div class="footer-panel">
-          <div class="footer-panel-inner">
-            <div>
-              <h2>先从 WPS Comate 进入，再按需要扩展平台。</h2>
-              <p>这是一个内部技能分发页，不是营销官网。它的目标是让使用者在几秒内知道该点哪里、该优先使用哪个版本。</p>
-            </div>
-            <div class="footer-actions">
-              <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
-              <a class="btn" href="#release">查看版本</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <div>© 2026 体验审核助手 / Skills Distribution Portal</div>
-        <div>优先维护：WPS Comate · Claude Skill · GPTs</div>
+        </details>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <!-- how to choose -->
+    <section class="wrap section compact" id="choice">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">如何选择平台</h2>
+          <p class="section-desc">如果不确定该点哪个入口，按下面四条判断即可。</p>
+        </div>
+      </div>
+
+      <div class="choice-list">
+        <div class="choice-item"><strong>团队直接使用</strong><span>选 WPS Comate</span></div>
+        <div class="choice-item"><strong>维护规则文件</strong><span>选 Claude Skill</span></div>
+        <div class="choice-item"><strong>快速跨平台验证</strong><span>选 GPTs</span></div>
+        <div class="choice-item"><strong>其余平台</strong><span>先使用模板</span></div>
+      </div>
+    </section>
+
+    <!-- examples -->
+    <section class="wrap section compact" id="examples">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">输出示例</h2>
+          <p class="section-desc">三档示例用于校准输出颗粒度，不作为主要入口。</p>
+        </div>
+      </div>
+
+      <div class="example-grid">
+        <article class="example-card">
+          <h3>Compact</h3>
+          <p>适合群聊同步、会议前快速确认与轻量风险提示。</p>
+          <a class="btn download-link" data-download="compactExample" data-fallback="#examples" href="#examples">查看示例</a>
+        </article>
+        <article class="example-card">
+          <h3>Standard</h3>
+          <p>适合 WPS Comate 日常评审、方案自检与团队讨论。</p>
+          <a class="btn download-link" data-download="standardExample" data-fallback="#examples" href="#examples">查看示例</a>
+        </article>
+        <article class="example-card">
+          <h3>Full</h3>
+          <p>适合评审归档、规则培训、问题复盘与跨团队沉淀。</p>
+          <a class="btn download-link" data-download="fullExample" data-fallback="#examples" href="#examples">查看示例</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- release -->
+    <section class="wrap section compact" id="release">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">版本与更新</h2>
+          <p class="section-desc">页脚级发布信息，真实下载链接可在页面底部脚本中集中替换。</p>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-card">
+          <h3>当前版本</h3>
+          <div class="release-meta">
+            <div class="meta"><span>版本</span><strong>v0.9.4</strong></div>
+            <div class="meta"><span>更新时间</span><strong>2026-05-08</strong></div>
+            <div class="meta"><span>主入口</span><strong>WPS Comate</strong></div>
+          </div>
+        </div>
+
+        <div class="release-card">
+          <h3>最近更新</h3>
+          <div class="log-list">
+            <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.4</strong><span>删除展示型工作台，收敛为内部入口页。</span></div>
+            <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.3</strong><span>改为浅色产品风格，优化中文排版。</span></div>
+            <div class="log-item"><strong>2026-05-07</strong><strong>v0.9.0</strong><span>补充推荐平台、示例区与发布信息。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>© 2026 体验审核助手 / Skills Distribution Portal</div>
+      <div>优先入口：WPS Comate · Claude Skill · GPTs</div>
+    </div>
+  </footer>
 
   <script>
     // Replace these values with real static file or cloud document URLs before wider release.
