@@ -145,7 +145,10 @@
     }
 
     .btn.primary:hover { background: #2b2b30; }
-    .btn.pending { cursor: not-allowed; opacity: 0.72; }
+    .btn.pending,
+    .hidden-link {
+      display: none;
+    }
 
     /* hero */
     .hero {
@@ -351,30 +354,6 @@
 
     .more-templates[open] .chevron { transform: rotate(180deg); }
 
-    .template-list {
-      display: grid;
-      border-top: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .template-row {
-      display: grid;
-      grid-template-columns: 230px minmax(0,1fr) 238px;
-      gap: 20px;
-      align-items: center;
-      padding: 14px 20px;
-      border-top: 1px solid var(--line);
-    }
-
-    .template-row:first-child { border-top: 0; }
-
-    .template-title {
-      color: var(--ink);
-      font-size: 17px;
-      font-weight: 820;
-      letter-spacing: -0.01em;
-    }
-
     /* lightweight content */
     .pill-list {
       display: flex;
@@ -407,11 +386,15 @@
       grid-template-columns: 170px minmax(0,1fr);
       gap: 18px;
       align-items: center;
-      padding: 13px 0;
+      padding: 13px 10px;
       border-bottom: 1px solid var(--line);
+      border-radius: 12px;
       font-size: 15px;
       line-height: 1.7;
+      transition: background .18s ease;
     }
+
+    .rule-row:hover { background: rgba(244,244,245,0.72); }
 
     .rule-row strong {
       color: var(--ink);
@@ -424,8 +407,14 @@
       font-weight: 650;
     }
 
-    .rule-row a:hover { text-decoration: underline; }
-    .rule-row .pending { color: var(--faint); text-decoration: none; cursor: default; }
+    .rule-row a:hover { color: var(--ink); text-decoration: underline; }
+    .rule-doc.pending,
+    .rule-row .pending {
+      color: var(--faint);
+      text-decoration: none;
+      cursor: default;
+      font-weight: 650;
+    }
 
     .basis-note {
       margin-top: 14px;
@@ -513,7 +502,6 @@
       .hero { padding: 38px 0 40px; }
       h1 { font-size: 40px; line-height: 1.16; letter-spacing: -0.045em; }
       .platform-row,
-      .template-row,
       .rule-row,
       .output-box {
         grid-template-columns: 1fr;
@@ -540,7 +528,6 @@
       .topbar .btn { min-width: auto; }
       .hero-actions { gap: 10px; }
       .platform-row,
-      .template-row,
       .output-box { padding: 18px; }
       .actions { width: 100%; }
       .actions .btn { flex: 1; min-width: 0; }
@@ -562,20 +549,20 @@
       <a href="#coverage">规则</a>
       <a href="#output">输出</a>
     </nav>
-    <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
+    <a class="btn primary external-link" href="https://comate.wps.cn/">进入 WPS Comate</a>
   </header>
 
   <main>
     <!-- hero -->
     <section class="wrap hero">
       <h1>WPS 界面体验评审辅助助手</h1>
-      <p class="lead">用于对 WPS 界面与交互改动方案进行体验评审辅助，支持 PRD、截图、功能列表与交互描述输入，输出结构化评审结果。</p>
+      <p class="lead">用于对 WPS 界面与交互改动方案进行体验评审辅助，支持 PRD、截图、功能列表与交互描述输入，并输出结构化评审结果。</p>
       <p class="audience-line">适用对象：设计师 / Reviewer / 产品经理</p>
       <div class="hero-actions">
-        <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
-        <a class="btn" href="#platforms">平台入口</a>
+        <a class="btn primary external-link" href="https://comate.wps.cn/">进入 WPS Comate</a>
+        <a class="btn external-link" href="https://365.kdocs.cn/l/cdOmf9qgJO7n">查看 Skill 说明</a>
       </div>
-      <p class="boundary">它帮助识别问题、提示风险并整理建议方向，但不替团队做“通过、否决、必须修改”的最终拍板。</p>
+      <p class="boundary">它用于识别问题、提示风险并整理建议方向，但不替代最终设计判断或评审拍板。</p>
     </section>
 
     <!-- platform list -->
@@ -594,12 +581,12 @@
             <span class="tag dark">默认使用</span>
           </div>
           <div class="platform-copy">
-            <strong>主入口，直接使用评审辅助助手。</strong>
-            <span>适合直接提交方案材料并查看结构化评审结果。</span>
+            <strong>主入口，直接提交方案材料并获得结构化评审结果。</strong>
+            <span>适合日常方案自检、评审准备与体验风险识别。</span>
           </div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入</a>
-            <a class="btn doc-link" data-doc="wpsTutorial" data-fallback="#platforms" href="#platforms">教程</a>
+            <a class="btn primary external-link" href="https://comate.wps.cn/">进入</a>
+            <a class="btn external-link" href="https://365.kdocs.cn/l/cdOmf9qgJO7n">教程</a>
           </div>
         </article>
 
@@ -609,12 +596,12 @@
             <span class="tag violet">规则维护</span>
           </div>
           <div class="platform-copy">
-            <strong>下载 Claude Skill 文件。</strong>
-            <span>用于维护 SKILL、references 与 examples。</span>
+            <strong>下载 Claude Skill 文件，用于规则维护与内容更新。</strong>
+            <span>适合维护 skill、references 与 examples。</span>
           </div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="claudeSkill" data-fallback="#platforms" href="#platforms">下载 Skill</a>
-            <a class="btn doc-link" data-doc="claudeGuide" data-fallback="#platforms" href="#platforms">说明</a>
+            <a class="btn primary download-link hidden-link" data-download="claudeSkill" href="#platforms">下载 Skill</a>
+            <a class="btn doc-link hidden-link" data-doc="claudeGuide" href="#platforms">说明</a>
           </div>
         </article>
 
@@ -624,43 +611,20 @@
             <span class="tag blue">快速验证</span>
           </div>
           <div class="platform-copy">
-            <strong>查看 GPTs 配置或参考内容。</strong>
-            <span>用于轻量迁移验证与跨平台试跑。</span>
+            <strong>查看 GPTs 配置与参考内容，用于快速验证效果。</strong>
+            <span>适合轻量试跑与跨平台对齐。</span>
           </div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="gpts" data-fallback="#platforms" href="#platforms">下载</a>
-            <a class="btn doc-link" data-doc="gptsReference" data-fallback="#platforms" href="#platforms">参考</a>
+            <a class="btn primary download-link hidden-link" data-download="gpts" href="#platforms">下载</a>
+            <a class="btn doc-link hidden-link" data-doc="gptsReference" href="#platforms">参考</a>
           </div>
         </article>
 
         <details class="more-templates">
           <summary>
-            <div>更多模板 <span>Kimi / Coze / Dify 为模板预留。</span></div>
+            <div>更多模板（Kimi / Coze / Dify）<span>按需使用，当前以模板预留为主。</span></div>
             <div class="chevron" aria-hidden="true">⌄</div>
           </summary>
-          <div class="template-list">
-            <div class="template-row">
-              <div class="template-title">Kimi / Kimi+</div>
-              <div class="template-copy"><strong>模板预留。</strong><span>长文本输入与规则比对方向。</span></div>
-              <div class="actions">
-                <a class="btn download-link" data-download="kimi" data-fallback="#platforms" href="#platforms">使用模板</a>
-              </div>
-            </div>
-            <div class="template-row">
-              <div class="template-title">Coze / 扣子</div>
-              <div class="template-copy"><strong>模板预留。</strong><span>Bot 场景与流程集成方向。</span></div>
-              <div class="actions">
-                <a class="btn download-link" data-download="coze" data-fallback="#platforms" href="#platforms">使用模板</a>
-              </div>
-            </div>
-            <div class="template-row">
-              <div class="template-title">Dify</div>
-              <div class="template-copy"><strong>模板预留。</strong><span>工作流接入与系统变量方向。</span></div>
-              <div class="actions">
-                <a class="btn download-link" data-download="dify" data-fallback="#platforms" href="#platforms">使用模板</a>
-              </div>
-            </div>
-          </div>
         </details>
       </div>
     </section>
@@ -670,7 +634,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">支持输入</h2>
-          <p class="section-desc">可直接提交方案材料，不需要先整理成固定格式。</p>
+          <p class="section-desc">可直接提交方案材料，无需预先整理为固定格式。</p>
         </div>
       </div>
       <div class="pill-list">
@@ -692,13 +656,13 @@
       </div>
 
       <div class="rule-list">
-        <div class="rule-row"><strong>一级界面</strong><a class="rule-link" data-rule="levelOne" href="#coverage">产品一级界面需求&系统权限需求审核流程</a></div>
-        <div class="rule-row"><strong>右键菜单</strong><a class="rule-link" data-rule="contextMenu" href="#coverage">大屏右键菜单通用标准规则</a></div>
-        <div class="rule-row"><strong>浮动工具栏</strong><a class="rule-link" data-rule="floatingToolbar" href="#coverage">大屏浮动工具栏</a></div>
-        <div class="rule-row"><strong>用户引导</strong><a class="rule-link" data-rule="userGuide" href="#coverage">WPS 用户引导规范</a></div>
-        <div class="rule-row"><strong>个人面板</strong><a class="rule-link" data-rule="personalPanel" href="#coverage">大屏个人面板通用标准规范</a></div>
-        <div class="rule-row"><strong>身份卡</strong><a class="rule-link" data-rule="identityCard" href="#coverage">大屏身份卡通用标准规范</a></div>
-        <div class="rule-row"><strong>增值应用框架</strong><a class="rule-link" data-rule="valueAddedFramework" href="#coverage">增值应用框架通用标准规范</a></div>
+        <div class="rule-row"><strong>一级界面</strong><a class="external-link" href="https://www.kdocs.cn/l/cbS0kTBUZazA">产品一级界面需求&系统权限需求审核流程</a></div>
+        <div class="rule-row"><strong>右键菜单</strong><a class="external-link" href="https://www.kdocs.cn/l/cmUPFrmVWhN3">大屏右键菜单通用标准规则</a></div>
+        <div class="rule-row"><strong>浮动工具栏</strong><a class="external-link" href="https://www.kdocs.cn/l/ctilh6vhEv02">大屏浮动工具栏</a></div>
+        <div class="rule-row"><strong>用户引导</strong><a class="external-link" href="https://www.kdocs.cn/l/cbgvn01MA8YN">WPS 用户引导规范</a></div>
+        <div class="rule-row"><strong>个人面板</strong><a class="external-link" href="https://www.kdocs.cn/l/cpYnt7BN8P9S">大屏个人面板通用标准规范</a></div>
+        <div class="rule-row"><strong>身份卡</strong><a class="external-link" href="https://www.kdocs.cn/l/cvaYb6zSVblw">大屏身份卡通用标准规范</a></div>
+        <div class="rule-row"><strong>增值应用框架</strong><a class="external-link" href="https://www.kdocs.cn/l/cdxmJRCwN3KO">增值应用框架通用标准规范</a></div>
         <div class="rule-row"><strong>运营位</strong><span class="pending">待补充</span></div>
       </div>
       <p class="basis-note">评审依据：注意力治理模型 + 功能入口落位 + 场景规则 + 问题 Pattern</p>
@@ -708,7 +672,7 @@
     <section class="wrap section compact" id="output">
       <div class="section-head">
         <div>
-          <h2 class="section-title">输出结果</h2>
+          <h2 class="section-title">评审输出</h2>
           <p class="section-desc">三种档位结构一致，仅详细程度不同。</p>
         </div>
       </div>
@@ -726,13 +690,13 @@
         <div>
           <h3>输出档位</h3>
           <ul class="tier-list">
-            <li><strong>Compact：</strong>短版</li>
-            <li><strong>Standard：</strong>标准版</li>
-            <li><strong>Full：</strong>完整版</li>
+            <li><strong>Compact：</strong>短版，适合快速同步</li>
+            <li><strong>Standard：</strong>标准版，适合日常评审</li>
+            <li><strong>Full：</strong>完整版，适合归档复盘</li>
           </ul>
         </div>
         <div class="example-action">
-          <a class="btn download-link" data-download="example" data-fallback="#output" href="#output">查看示例</a>
+          <a class="btn external-link" href="https://365.kdocs.cn/l/cdOmf9qgJO7n">查看评审结果示例</a>
         </div>
       </div>
     </section>
@@ -741,35 +705,19 @@
   <footer class="footer">
     <div class="wrap">
       <div>© 2026 体验评审辅助助手 / Skill Distribution Portal</div>
-      <div>页面更新：2026-05-08</div>
+      <div>分发页更新：2026-05-08</div>
     </div>
   </footer>
 
   <script>
-    // Replace these values with real static file, cloud document, or rule document URLs.
     const LINKS = {
       downloads: {
-        wpsComate: "",
         claudeSkill: "",
-        gpts: "",
-        kimi: "",
-        coze: "",
-        dify: "",
-        example: ""
+        gpts: ""
       },
       docs: {
-        wpsTutorial: "",
         claudeGuide: "",
         gptsReference: ""
-      },
-      rules: {
-        levelOne: "",
-        contextMenu: "",
-        floatingToolbar: "",
-        userGuide: "",
-        personalPanel: "",
-        identityCard: "",
-        valueAddedFramework: ""
       }
     };
 
@@ -777,24 +725,28 @@
       document.querySelectorAll(selector).forEach((link) => {
         const key = link.dataset[dataName];
         const target = LINKS[groupName][key];
-        const fallback = link.dataset.fallback || link.getAttribute("href") || "#";
 
         if (target) {
           link.href = target;
           link.classList.remove("pending");
+          link.classList.remove("hidden-link");
           link.removeAttribute("aria-disabled");
           return;
         }
 
-        link.href = fallback;
         link.classList.add("pending");
+        link.classList.add("hidden-link");
         link.setAttribute("aria-disabled", "true");
       });
     }
 
     applyMappedLinks(".download-link", "downloads", "download");
     applyMappedLinks(".doc-link", "docs", "doc");
-    applyMappedLinks(".rule-link", "rules", "rule");
+
+    document.querySelectorAll('a[href^="http"]').forEach((link) => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
   </script>
 </body>
 </html>
