@@ -6,14 +6,12 @@
   <title>体验审核助手 · 平台分发页</title>
   <style>
     :root {
-      --bg: #ffffff;
       --text: #111113;
+      --ink: #18181b;
       --muted: #676b75;
       --faint: #8b909a;
       --line: #e4e4e7;
       --soft: #f7f7f8;
-      --soft-2: #fbfbfc;
-      --ink: #18181b;
       --blue: #38bdf8;
       --green: #34d399;
       --violet: #a78bfa;
@@ -29,9 +27,9 @@
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(circle at 50% -10%, rgba(56,189,248,0.12), transparent 34rem),
-        radial-gradient(circle at 10% 12%, rgba(52,211,153,0.10), transparent 26rem),
-        radial-gradient(circle at 88% 8%, rgba(167,139,250,0.10), transparent 24rem),
+        radial-gradient(circle at 50% -8%, rgba(56,189,248,0.12), transparent 34rem),
+        radial-gradient(circle at 12% 14%, rgba(52,211,153,0.10), transparent 25rem),
+        radial-gradient(circle at 86% 10%, rgba(167,139,250,0.10), transparent 24rem),
         #fff;
       font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       line-height: 1.68;
@@ -48,7 +46,7 @@
         linear-gradient(to right, rgba(24,24,27,0.04) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(24,24,27,0.04) 1px, transparent 1px);
       background-size: 64px 64px;
-      mask-image: linear-gradient(to bottom, black 0, black 520px, transparent 980px);
+      mask-image: linear-gradient(to bottom, black 0, black 560px, transparent 1040px);
       z-index: -1;
     }
 
@@ -75,7 +73,7 @@
       color: var(--ink);
       text-decoration: none;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 750;
       white-space: nowrap;
     }
 
@@ -101,7 +99,7 @@
     .nav {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
     }
 
     .nav a {
@@ -128,7 +126,7 @@
       text-decoration: none;
       font-size: 14px;
       line-height: 1;
-      font-weight: 700;
+      font-weight: 750;
       white-space: nowrap;
       box-shadow: 0 10px 26px -24px rgba(24,24,27,0.55);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
@@ -151,28 +149,50 @@
 
     /* hero */
     .hero {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 64px 0 54px;
+      padding: 58px 0 52px;
       text-align: center;
     }
 
     h1 {
       margin: 0;
       color: var(--text);
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.12;
-      font-weight: 800;
+      font-size: clamp(40px, 7vw, 70px);
+      line-height: 1.14;
+      font-weight: 820;
       letter-spacing: -0.052em;
     }
 
     .lead {
-      max-width: 720px;
+      max-width: 780px;
       margin: 22px auto 0;
       color: var(--muted);
       font-size: clamp(16px, 2vw, 19px);
-      line-height: 1.85;
+      line-height: 1.86;
       font-weight: 450;
+    }
+
+    .audience {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .audience span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      color: #4f5560;
+      font-size: 14px;
+      font-weight: 750;
+      backdrop-filter: blur(10px);
     }
 
     .hero-actions {
@@ -180,7 +200,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 28px;
     }
 
     .quick-strip {
@@ -188,7 +208,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 30px auto 0;
+      margin: 28px auto 0;
     }
 
     .quick-pill {
@@ -201,7 +221,7 @@
       background: rgba(255,255,255,0.88);
       color: #515763;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 750;
       box-shadow: 0 12px 30px -26px rgba(24,24,27,0.45);
       backdrop-filter: blur(10px);
     }
@@ -217,7 +237,7 @@
     .dot.violet { background: var(--violet); }
 
     .boundary {
-      max-width: 720px;
+      max-width: 760px;
       margin: 20px auto 0;
       color: #777c86;
       font-size: 14px;
@@ -226,32 +246,32 @@
 
     /* sections */
     .section {
-      padding: 54px 0;
-      border-top: 1px solid rgba(228,228,231,0.82);
+      padding: 48px 0;
+      border-top: 1px solid rgba(228,228,231,0.85);
     }
 
-    .section.compact { padding: 42px 0; }
+    .section.compact { padding: 38px 0; }
 
     .section-head {
       display: flex;
       align-items: end;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .section-title {
       margin: 0;
       color: var(--text);
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.2;
-      font-weight: 800;
+      font-size: clamp(27px, 3.6vw, 40px);
+      line-height: 1.22;
+      font-weight: 820;
       letter-spacing: -0.045em;
     }
 
     .section-desc {
-      max-width: 680px;
-      margin: 10px 0 0;
+      max-width: 720px;
+      margin: 9px 0 0;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.82;
@@ -265,7 +285,7 @@
 
     .platform-row {
       display: grid;
-      grid-template-columns: 240px minmax(0,1fr) 238px;
+      grid-template-columns: 230px minmax(0,1fr) 238px;
       gap: 20px;
       align-items: center;
       min-height: 92px;
@@ -286,7 +306,7 @@
       color: var(--ink);
       font-size: 20px;
       line-height: 1.3;
-      font-weight: 800;
+      font-weight: 820;
       letter-spacing: -0.018em;
     }
 
@@ -309,9 +329,8 @@
     .tag.blue { background: #e0f2fe; color: #0369a1; }
     .tag.violet { background: #ede9fe; color: #6d28d9; }
 
-    .platform-copy {
-      min-width: 0;
-    }
+    .platform-copy,
+    .template-copy { min-width: 0; }
 
     .platform-copy strong,
     .template-copy strong {
@@ -336,7 +355,7 @@
       text-overflow: ellipsis;
     }
 
-    .platform-actions {
+    .actions {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
@@ -354,22 +373,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      min-height: 74px;
-      padding: 18px 20px;
+      min-height: 72px;
+      padding: 17px 20px;
       cursor: pointer;
       list-style: none;
       color: var(--ink);
-      font-weight: 800;
+      font-weight: 820;
       font-size: 18px;
     }
 
     .more-templates summary::-webkit-details-marker { display: none; }
-
-    .more-templates summary span {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 650;
-    }
+    .more-templates summary span { color: var(--muted); font-size: 14px; font-weight: 650; }
 
     .chevron {
       width: 32px;
@@ -393,7 +407,7 @@
 
     .template-row {
       display: grid;
-      grid-template-columns: 240px minmax(0,1fr) 238px;
+      grid-template-columns: 230px minmax(0,1fr) 238px;
       gap: 20px;
       align-items: center;
       padding: 16px 20px;
@@ -403,38 +417,66 @@
     .template-row:first-child { border-top: 0; }
 
     .template-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
       color: var(--ink);
       font-size: 17px;
-      font-weight: 800;
+      font-weight: 820;
       letter-spacing: -0.01em;
     }
 
-    /* choice */
-    .choice-list {
+    /* lightweight grids */
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .info-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: #3f4652;
+      font-size: 14px;
+      font-weight: 750;
+      box-shadow: 0 10px 26px -24px rgba(24,24,27,0.45);
+    }
+
+    .basis-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .choice-list,
+    .start-list {
       display: grid;
       grid-template-columns: repeat(4, minmax(0,1fr));
       gap: 12px;
     }
 
-    .choice-item {
-      padding: 18px;
+    .choice-item,
+    .start-item {
+      padding: 17px;
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
-      background: #fff;
+      background: rgba(255,255,255,0.92);
       box-shadow: 0 10px 28px -27px rgba(24,24,27,0.45);
     }
 
-    .choice-item strong {
+    .choice-item strong,
+    .start-item strong {
       display: block;
       color: var(--ink);
       font-size: 15px;
       line-height: 1.5;
     }
 
-    .choice-item span {
+    .choice-item span,
+    .start-item span {
       display: block;
       margin-top: 7px;
       color: var(--muted);
@@ -442,7 +484,70 @@
       line-height: 1.65;
     }
 
-    /* examples */
+    .step {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* output */
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 14px;
+    }
+
+    .output-panel,
+    .example-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 10px 28px -27px rgba(24,24,27,0.45);
+    }
+
+    .output-panel {
+      padding: 18px;
+    }
+
+    .output-panel h3,
+    .example-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 820;
+    }
+
+    .output-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .output-list li {
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: #3f4652;
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .output-hint {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.78;
+    }
+
     .example-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
@@ -453,18 +558,6 @@
       display: grid;
       gap: 12px;
       padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: #fff;
-      box-shadow: 0 10px 28px -27px rgba(24,24,27,0.45);
-    }
-
-    .example-card h3 {
-      margin: 0;
-      color: var(--ink);
-      font-size: 18px;
-      line-height: 1.35;
-      font-weight: 800;
     }
 
     .example-card p {
@@ -491,7 +584,7 @@
     }
 
     .release-card {
-      padding: 18px 0 0;
+      padding: 16px 0 0;
       border-top: 1px solid var(--line);
     }
 
@@ -500,7 +593,7 @@
       color: var(--ink);
       font-size: 16px;
       line-height: 1.35;
-      font-weight: 800;
+      font-weight: 820;
     }
 
     .release-meta {
@@ -524,10 +617,7 @@
       line-height: 1.45;
     }
 
-    .log-list {
-      display: grid;
-      gap: 9px;
-    }
+    .log-list { display: grid; gap: 9px; }
 
     .log-item {
       display: grid;
@@ -538,7 +628,7 @@
 
     .log-item strong {
       color: var(--ink);
-      font-weight: 800;
+      font-weight: 820;
     }
 
     .footer {
@@ -559,17 +649,16 @@
       .wrap { width: min(var(--max), calc(100% - 32px)); }
       .nav { display: none; }
       .topbar { padding: 16px 0; }
-      .hero { padding: 42px 0 44px; }
-      h1 { font-size: 42px; line-height: 1.14; letter-spacing: -0.045em; }
+      .hero { padding: 38px 0 42px; }
+      h1 { font-size: 40px; line-height: 1.16; letter-spacing: -0.045em; }
       .platform-row,
       .template-row,
+      .output-grid,
       .release {
         grid-template-columns: 1fr;
         gap: 12px;
       }
-      .platform-actions {
-        justify-content: flex-start;
-      }
+      .actions { justify-content: flex-start; }
       .platform-copy strong,
       .platform-copy span,
       .template-copy strong,
@@ -577,6 +666,7 @@
         white-space: normal;
       }
       .choice-list,
+      .start-list,
       .example-grid,
       .release-meta {
         grid-template-columns: 1fr;
@@ -585,12 +675,8 @@
         align-items: start;
         flex-direction: column;
       }
-      .release {
-        gap: 28px;
-      }
-      .footer .wrap {
-        flex-direction: column;
-      }
+      .release { gap: 26px; }
+      .footer .wrap { flex-direction: column; }
     }
 
     @media (max-width: 520px) {
@@ -598,12 +684,14 @@
       .btn { min-width: 96px; min-height: 40px; padding: 10px 14px; font-size: 13px; }
       .topbar .btn { min-width: auto; }
       .hero-actions { gap: 10px; }
-      .quick-strip { align-items: center; flex-direction: column; }
-      .quick-pill { width: 100%; justify-content: center; }
+      .quick-strip,
+      .audience { align-items: center; flex-direction: column; }
+      .quick-pill,
+      .audience span { width: 100%; justify-content: center; }
       .platform-row,
       .template-row { padding: 18px; }
-      .platform-actions { width: 100%; }
-      .platform-actions .btn { flex: 1; min-width: 0; }
+      .actions { width: 100%; }
+      .actions .btn { flex: 1; min-width: 0; }
       .more-templates summary { align-items: flex-start; flex-direction: column; }
       .chevron { position: absolute; right: 18px; }
       .log-item { grid-template-columns: 1fr; gap: 2px; }
@@ -614,13 +702,14 @@
   <header class="wrap topbar">
     <a class="brand" href="#">
       <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-      <span>体验审核助手</span>
+      <span>体验评审辅助助手</span>
     </a>
     <nav class="nav" aria-label="页面导航">
       <a href="#platforms">平台</a>
-      <a href="#choice">选择</a>
-      <a href="#examples">示例</a>
-      <a href="#release">版本</a>
+      <a href="#inputs">输入</a>
+      <a href="#coverage">场景</a>
+      <a href="#output">输出</a>
+      <a href="#start">开始</a>
     </nav>
     <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
   </header>
@@ -628,19 +717,24 @@
   <main>
     <!-- hero -->
     <section class="wrap hero">
-      <h1>WPS 界面体验审核助手</h1>
-      <p class="lead">用于界面方案自检、结构化评审、体验风险识别与修改方向整理。默认从 WPS Comate 进入。</p>
+      <h1>WPS 界面体验评审辅助助手</h1>
+      <p class="lead">用于对 WPS 界面与交互改动方案进行体验评审辅助，支持 PRD、截图、功能列表与交互描述输入，输出结构化评审结果。</p>
+      <div class="audience" aria-label="适用对象">
+        <span>设计师</span>
+        <span>Reviewer</span>
+        <span>产品经理</span>
+      </div>
       <div class="hero-actions">
         <a class="btn primary download-link" data-download="wpsComate" data-fallback="#platforms" href="#platforms">进入 WPS Comate</a>
         <a class="btn" href="#platforms">查看全部平台</a>
-        <a class="btn" href="#choice">查看说明</a>
+        <a class="btn" href="#start">查看说明</a>
       </div>
       <div class="quick-strip" aria-label="入口建议">
         <div class="quick-pill"><span class="dot"></span>默认推荐：WPS Comate</div>
         <div class="quick-pill"><span class="dot violet"></span>规则维护：Claude Skill</div>
         <div class="quick-pill"><span class="dot blue"></span>快速验证：GPTs</div>
       </div>
-      <p class="boundary">它帮助识别问题和整理建议，但不替团队做“通过、否决、必须修改”的最终拍板。</p>
+      <p class="boundary">它帮助识别问题、提示风险并整理建议方向，但不替团队做“通过、否决、必须修改”的最终拍板。</p>
     </section>
 
     <!-- platform list -->
@@ -648,7 +742,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">平台入口</h2>
-          <p class="section-desc">优先选择 WPS Comate。只有需要维护规则或验证跨平台效果时，再进入 Claude Skill 与 GPTs。</p>
+          <p class="section-desc">直接使用优先进入 WPS Comate。只有需要维护规则或验证跨平台效果时，再进入 Claude Skill 与 GPTs。</p>
         </div>
       </div>
 
@@ -656,15 +750,15 @@
         <article class="platform-row primary">
           <div class="platform-main">
             <h3>WPS Comate</h3>
-            <span class="tag dark">主入口</span>
+            <span class="tag dark">默认推荐</span>
           </div>
           <div class="platform-copy">
-            <strong>团队直接使用的默认入口。</strong>
-            <span>适合设计、产品、业务和试点成员进行日常方案自检。</span>
+            <strong>直接提交 PRD、截图、功能列表与文字描述，获得结构化评审结果。</strong>
+            <span>适合设计师、Reviewer、产品经理日常使用。</span>
           </div>
-          <div class="platform-actions">
-            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#choice" href="#choice">进入</a>
-            <a class="btn" href="#choice">说明</a>
+          <div class="actions">
+            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#start" href="#start">进入</a>
+            <a class="btn" href="#start">说明</a>
           </div>
         </article>
 
@@ -674,12 +768,12 @@
             <span class="tag violet">规则维护</span>
           </div>
           <div class="platform-copy">
-            <strong>用于维护规则文件和 references。</strong>
-            <span>适合负责规则更新、版本管理和跨平台复用的人。</span>
+            <strong>维护 SKILL、references 与 examples，支撑规则文件化与跨平台复用。</strong>
+            <span>适合规则维护和平台适配人员。</span>
           </div>
-          <div class="platform-actions">
-            <a class="btn primary download-link" data-download="claudeSkill" data-fallback="#choice" href="#choice">下载</a>
-            <a class="btn" href="#examples">示例</a>
+          <div class="actions">
+            <a class="btn primary download-link" data-download="claudeSkill" data-fallback="#start" href="#start">下载</a>
+            <a class="btn" href="#output">示例</a>
           </div>
         </article>
 
@@ -689,12 +783,12 @@
             <span class="tag blue">快速验证</span>
           </div>
           <div class="platform-copy">
-            <strong>用于快速验证跨平台复用效果。</strong>
-            <span>适合轻量试跑 Instructions + Knowledge 版本。</span>
+            <strong>用于轻量迁移验证与跨平台试跑。</strong>
+            <span>适合快速确认提示词和知识承载方式是否可复用。</span>
           </div>
-          <div class="platform-actions">
-            <a class="btn primary download-link" data-download="gpts" data-fallback="#choice" href="#choice">下载</a>
-            <a class="btn" href="#choice">参考</a>
+          <div class="actions">
+            <a class="btn primary download-link" data-download="gpts" data-fallback="#start" href="#start">下载</a>
+            <a class="btn" href="#start">参考</a>
           </div>
         </article>
 
@@ -708,11 +802,11 @@
               <div class="template-title">Kimi / Kimi+</div>
               <div class="template-copy">
                 <strong>长文本输入与规则比对模板。</strong>
-                <span>先保留 system + usage 模板，等真实场景稳定后再投入。</span>
+                <span>先保留 system + usage 模板，待真实场景稳定后再投入。</span>
               </div>
-              <div class="platform-actions">
-                <a class="btn download-link" data-download="kimi" data-fallback="#choice" href="#choice">使用模板</a>
-                <a class="btn" href="#choice">参考</a>
+              <div class="actions">
+                <a class="btn download-link" data-download="kimi" data-fallback="#start" href="#start">使用模板</a>
+                <a class="btn" href="#start">参考</a>
               </div>
             </div>
 
@@ -722,9 +816,9 @@
                 <strong>Bot 场景与流程集成模板。</strong>
                 <span>先保留 persona + workflow + KB 模板。</span>
               </div>
-              <div class="platform-actions">
-                <a class="btn download-link" data-download="coze" data-fallback="#choice" href="#choice">使用模板</a>
-                <a class="btn" href="#choice">参考</a>
+              <div class="actions">
+                <a class="btn download-link" data-download="coze" data-fallback="#start" href="#start">使用模板</a>
+                <a class="btn" href="#start">参考</a>
               </div>
             </div>
 
@@ -734,9 +828,9 @@
                 <strong>工作流接入与系统变量模板。</strong>
                 <span>先保留 system + workflow + variables 模板。</span>
               </div>
-              <div class="platform-actions">
-                <a class="btn download-link" data-download="dify" data-fallback="#choice" href="#choice">使用模板</a>
-                <a class="btn" href="#choice">参考</a>
+              <div class="actions">
+                <a class="btn download-link" data-download="dify" data-fallback="#start" href="#start">使用模板</a>
+                <a class="btn" href="#start">参考</a>
               </div>
             </div>
           </div>
@@ -744,48 +838,98 @@
       </div>
     </section>
 
-    <!-- how to choose -->
-    <section class="wrap section compact" id="choice">
+    <!-- supported input -->
+    <section class="wrap section compact" id="inputs">
       <div class="section-head">
         <div>
-          <h2 class="section-title">如何选择平台</h2>
-          <p class="section-desc">如果不确定该点哪个入口，按下面四条判断即可。</p>
+          <h2 class="section-title">支持输入</h2>
+          <p class="section-desc">可直接提交方案材料，不需要先整理成固定格式。</p>
         </div>
       </div>
-
-      <div class="choice-list">
-        <div class="choice-item"><strong>团队直接使用</strong><span>选 WPS Comate</span></div>
-        <div class="choice-item"><strong>维护规则文件</strong><span>选 Claude Skill</span></div>
-        <div class="choice-item"><strong>快速跨平台验证</strong><span>选 GPTs</span></div>
-        <div class="choice-item"><strong>其余平台</strong><span>先使用模板</span></div>
+      <div class="pill-list">
+        <span class="info-pill">PRD</span>
+        <span class="info-pill">页面截图</span>
+        <span class="info-pill">功能列表</span>
+        <span class="info-pill">交互说明</span>
+        <span class="info-pill">文字方案描述</span>
       </div>
     </section>
 
-    <!-- examples -->
-    <section class="wrap section compact" id="examples">
+    <!-- coverage -->
+    <section class="wrap section compact" id="coverage">
       <div class="section-head">
         <div>
-          <h2 class="section-title">输出示例</h2>
-          <p class="section-desc">三档示例用于校准输出颗粒度，不作为主要入口。</p>
+          <h2 class="section-title">当前覆盖场景</h2>
+          <p class="section-desc">覆盖 WPS 前端界面与交互改动中常见的评审场景。</p>
+        </div>
+      </div>
+      <div class="pill-list">
+        <span class="info-pill">一级界面</span>
+        <span class="info-pill">右键菜单</span>
+        <span class="info-pill">浮动工具栏</span>
+        <span class="info-pill">用户引导</span>
+        <span class="info-pill">个人面板</span>
+        <span class="info-pill">身份卡</span>
+        <span class="info-pill">增值应用框架</span>
+        <span class="info-pill">运营位（待补充）</span>
+      </div>
+      <p class="basis-note">评审依据：注意力治理模型 + 功能入口落位 + 场景规则 + 问题 Pattern</p>
+    </section>
+
+    <!-- output -->
+    <section class="wrap section compact" id="output">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">输出结果</h2>
+          <p class="section-desc">默认输出结构化评审结果，并可按使用场景切换输出颗粒度。</p>
         </div>
       </div>
 
-      <div class="example-grid">
-        <article class="example-card">
-          <h3>Compact</h3>
-          <p>适合群聊同步、会议前快速确认与轻量风险提示。</p>
-          <a class="btn download-link" data-download="compactExample" data-fallback="#examples" href="#examples">查看示例</a>
-        </article>
-        <article class="example-card">
-          <h3>Standard</h3>
-          <p>适合 WPS Comate 日常评审、方案自检与团队讨论。</p>
-          <a class="btn download-link" data-download="standardExample" data-fallback="#examples" href="#examples">查看示例</a>
-        </article>
-        <article class="example-card">
-          <h3>Full</h3>
-          <p>适合评审归档、规则培训、问题复盘与跨团队沉淀。</p>
-          <a class="btn download-link" data-download="fullExample" data-fallback="#examples" href="#examples">查看示例</a>
-        </article>
+      <div class="output-grid">
+        <div class="output-panel">
+          <h3>默认输出内容</h3>
+          <ul class="output-list">
+            <li>评审摘要</li>
+            <li>重点问题清单</li>
+            <li>规则覆盖情况</li>
+          </ul>
+          <p class="output-hint">重点问题清单通常包含问题类型、风险等级、问题摘要、客观现象、可能影响、对应依据与建议方向。</p>
+        </div>
+
+        <div class="example-grid">
+          <article class="example-card">
+            <h3>Compact</h3>
+            <p>适合群聊同步与会前快速确认。</p>
+            <a class="btn download-link" data-download="compactExample" data-fallback="#output" href="#output">查看示例</a>
+          </article>
+          <article class="example-card">
+            <h3>Standard</h3>
+            <p>适合日常评审、方案自检与团队讨论。</p>
+            <a class="btn download-link" data-download="standardExample" data-fallback="#output" href="#output">查看示例</a>
+          </article>
+          <article class="example-card">
+            <h3>Full</h3>
+            <p>适合归档、培训、复盘与跨团队沉淀。</p>
+            <a class="btn download-link" data-download="fullExample" data-fallback="#output" href="#output">查看示例</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- start -->
+    <section class="wrap section compact" id="start">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">开始使用</h2>
+          <p class="section-desc">第一次使用时，按这四步走即可。</p>
+        </div>
+      </div>
+
+      <div class="start-list">
+        <div class="start-item"><span class="step">1</span><strong>启动 WPS Comate</strong><span>进入当前推荐的主入口。</span></div>
+        <div class="start-item"><span class="step">2</span><strong>安装技能</strong><span>在技能市场安装评审辅助助手。</span></div>
+        <div class="start-item"><span class="step">3</span><strong>上传方案材料</strong><span>提交 PRD、截图、功能列表或交互说明。</span></div>
+        <div class="start-item"><span class="step">4</span><strong>查看结构化结果</strong><span>阅读摘要、重点问题与规则覆盖情况。</span></div>
       </div>
     </section>
 
@@ -802,7 +946,7 @@
         <div class="release-card">
           <h3>当前版本</h3>
           <div class="release-meta">
-            <div class="meta"><span>版本</span><strong>v0.9.4</strong></div>
+            <div class="meta"><span>版本</span><strong>v0.9.5</strong></div>
             <div class="meta"><span>更新时间</span><strong>2026-05-08</strong></div>
             <div class="meta"><span>主入口</span><strong>WPS Comate</strong></div>
           </div>
@@ -811,9 +955,9 @@
         <div class="release-card">
           <h3>最近更新</h3>
           <div class="log-list">
+            <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.5</strong><span>对齐 Skill 说明，前置输入、对象、输出与覆盖场景。</span></div>
             <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.4</strong><span>删除展示型工作台，收敛为内部入口页。</span></div>
             <div class="log-item"><strong>2026-05-08</strong><strong>v0.9.3</strong><span>改为浅色产品风格，优化中文排版。</span></div>
-            <div class="log-item"><strong>2026-05-07</strong><strong>v0.9.0</strong><span>补充推荐平台、示例区与发布信息。</span></div>
           </div>
         </div>
       </div>
@@ -822,8 +966,8 @@
 
   <footer class="footer">
     <div class="wrap">
-      <div>© 2026 体验审核助手 / Skills Distribution Portal</div>
-      <div>优先入口：WPS Comate · Claude Skill · GPTs</div>
+      <div>© 2026 体验评审辅助助手 / Skills Distribution Portal</div>
+      <div>默认入口：WPS Comate · 规则维护：Claude Skill · 快速验证：GPTs</div>
     </div>
   </footer>
 
