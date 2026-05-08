@@ -60,7 +60,7 @@
     }
 
     .hero {
-      padding: 18px 0 34px;
+      padding: 18px 0 36px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -82,28 +82,53 @@
     }
 
     .lead {
-      max-width: 760px;
+      max-width: 720px;
       margin: 16px 0 0;
       color: var(--muted);
       font-size: 17px;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 44px;
+      align-items: end;
     }
 
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.7);
+    .hero-focus {
+      margin-top: 22px;
+      max-width: 720px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+    }
+
+    .hero-focus strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .entry-summary {
+      border-top: 1px solid var(--line);
+    }
+
+    .entry-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .entry-item strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .entry-item span {
+      color: var(--muted);
     }
 
     .hero-actions {
@@ -115,9 +140,18 @@
 
     .hero-note {
       margin-top: 18px;
-      max-width: 780px;
+      max-width: 760px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .hero-note strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .anchor-offset {
+      scroll-margin-top: 24px;
     }
 
     .section {
@@ -163,11 +197,15 @@
 
     .platform-row {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr 1fr auto;
-      gap: 16px;
+      grid-template-columns: 1fr 1.6fr auto;
+      gap: 22px;
       align-items: center;
-      padding: 18px 0;
+      padding: 20px 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    .platform-row.featured {
+      padding: 24px 0;
     }
 
     .platform-name {
@@ -196,9 +234,22 @@
       white-space: nowrap;
     }
 
-    .platform-meta {
+    .platform-copy {
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .platform-copy p {
+      margin: 0;
+    }
+
+    .platform-copy p + p {
+      margin-top: 4px;
+    }
+
+    .platform-copy strong {
+      color: var(--text);
+      font-weight: 600;
     }
 
     .actions {
@@ -255,7 +306,6 @@
       border-color: var(--line);
     }
 
-    .priority-strip,
     .example-list,
     .release-grid {
       display: grid;
@@ -264,21 +314,18 @@
       margin-top: 8px;
     }
 
-    .priority-item,
     .example-item,
     .release-item {
       padding: 14px 0;
       border-top: 1px solid var(--line);
     }
 
-    .priority-item h3,
     .example-item h3,
     .release-item h3 {
       margin: 0 0 6px;
       font-size: 16px;
     }
 
-    .priority-item p,
     .example-item p,
     .release-item p {
       margin: 0;
@@ -320,8 +367,9 @@
 
     .decision-list {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
     }
 
     .decision-item {
@@ -376,7 +424,6 @@
       .section-head,
       .platform-row,
       .two-col,
-      .priority-strip,
       .example-list,
       .release-grid,
       .decision-list,
@@ -385,6 +432,7 @@
       }
 
       .actions { justify-content: flex-start; }
+      .hero-grid { grid-template-columns: 1fr; gap: 24px; }
       h1 { font-size: 34px; }
       .wrap { padding: 20px 16px 48px; }
       .topbar { display: none; }
@@ -406,19 +454,34 @@
 
     <!-- hero -->
     <section class="hero">
-      <p class="eyebrow">Experience Audit Assistant</p>
-      <h1>WPS 界面体验审核助手</h1>
-      <p class="lead">用于方案自检、结构化评审、风险提示与规则对照。默认输出短版评审结果，帮助团队更快对齐重点，但不替代最终设计或业务决策。</p>
-      <div class="hero-meta">
-        <span class="meta-pill">主版本：WPS Comate</span>
-        <span class="meta-pill">结构：一套 Core，多平台 Adapter</span>
-        <span class="meta-pill">输出：Compact / Standard / Full</span>
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Experience Audit Assistant</p>
+          <h1>WPS 界面体验审核助手</h1>
+          <p class="lead">面向界面方案自检、结构化评审、体验风险识别与修改方向整理，帮助团队更快把问题说清、把优先级对齐。</p>
+          <div class="hero-focus"><strong>默认主版本：WPS Comate。</strong>需要直接给团队使用时，从这里进入；需要维护规则或验证跨平台效果，再看 Claude Skill 与 GPTs。</div>
+          <div class="hero-actions">
+            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#wps-comate" href="#wps-comate">进入 WPS Comate</a>
+            <a class="btn" href="#platforms">查看全部平台</a>
+          </div>
+        </div>
+
+        <div class="entry-summary" aria-label="推荐入口">
+          <div class="entry-item">
+            <strong>默认推荐</strong>
+            <span>WPS Comate</span>
+          </div>
+          <div class="entry-item">
+            <strong>规则维护</strong>
+            <span>Claude Skill</span>
+          </div>
+          <div class="entry-item">
+            <strong>快速验证</strong>
+            <span>GPTs</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-actions">
-        <a class="btn primary" href="#platforms">查看平台</a>
-        <a class="btn" href="#guide">使用说明</a>
-      </div>
-      <div class="hero-note">边界说明：本助手仅提供客观问题识别、风险提示与建议方向，不输出“通过 / 否决 / 必须修改”的最终拍板结论。</div>
+      <div class="hero-note"><strong>使用边界：</strong>它会帮助识别问题、提示风险并整理建议方向，但不替团队做“通过、否决、必须修改”的最终拍板。</div>
     </section>
 
     <!-- platform list -->
@@ -426,21 +489,23 @@
       <div class="section-head">
         <div class="section-kicker">Platforms</div>
         <div>
-          <h2 class="section-title">平台下载</h2>
-          <p class="section-desc">WPS Comate 为当前主生产版本。Claude Skill 与 GPTs 适合优先做跨平台验证，其余平台先保留模板。</p>
+          <h2 class="section-title">选择使用入口</h2>
+          <p class="section-desc">先用 WPS Comate 进入团队生产场景；Claude Skill 与 GPTs 用于规则维护和跨平台验证；其余平台先按模板预留。</p>
         </div>
       </div>
 
       <div class="platform-list">
-        <article class="platform-row">
+        <article class="platform-row featured anchor-offset" id="wps-comate">
           <div class="platform-name">
             <h3>WPS Comate</h3>
-            <span class="badge">主版本</span>
+            <span class="badge">默认推荐</span>
           </div>
-          <div class="platform-meta">团队内部分发</div>
-          <div class="platform-meta">SKILL + references</div>
+          <div class="platform-copy">
+            <p><strong>团队内部分发与日常方案评审。</strong></p>
+            <p>当前主生产版本，承载 SKILL 与 references，是默认进入入口。</p>
+          </div>
           <div class="actions">
-            <a class="btn primary download-link" data-download="wpsComate" href="#release">下载</a>
+            <a class="btn primary download-link" data-download="wpsComate" data-fallback="#guide" href="#guide">进入</a>
             <a class="btn" href="#guide">说明</a>
           </div>
         </article>
@@ -448,10 +513,12 @@
         <article class="platform-row">
           <div class="platform-name">
             <h3>Claude Skill</h3>
-            <span class="badge">优先适配</span>
+            <span class="badge">规则维护</span>
           </div>
-          <div class="platform-meta">规则文件维护</div>
-          <div class="platform-meta">SKILL + examples</div>
+          <div class="platform-copy">
+            <p><strong>维护规则文件与多平台复用结构。</strong></p>
+            <p>适合文件化管理 SKILL、references 与 examples，作为优先适配版本。</p>
+          </div>
           <div class="actions">
             <a class="btn primary download-link" data-download="claudeSkill" href="#release">下载</a>
             <a class="btn" href="#examples">示例</a>
@@ -461,106 +528,64 @@
         <article class="platform-row">
           <div class="platform-name">
             <h3>GPTs</h3>
-            <span class="badge">轻部署</span>
+            <span class="badge">快速验证</span>
           </div>
-          <div class="platform-meta">跨平台验证</div>
-          <div class="platform-meta">Instructions + Knowledge</div>
+          <div class="platform-copy">
+            <p><strong>快速验证跨平台迁移效果。</strong></p>
+            <p>用 Instructions 与 Knowledge 承载核心规则，适合轻量试运行。</p>
+          </div>
           <div class="actions">
             <a class="btn primary download-link" data-download="gpts" href="#release">下载</a>
-            <a class="btn" href="#guide">说明</a>
+            <a class="btn" href="#guide">参考</a>
           </div>
         </article>
 
         <article class="platform-row">
           <div class="platform-name">
             <h3>Kimi / Kimi+</h3>
+            <span class="badge">模板预留</span>
           </div>
-          <div class="platform-meta">长文本比对</div>
-          <div class="platform-meta">system + usage</div>
+          <div class="platform-copy">
+            <p><strong>长文本输入与规则比对。</strong></p>
+            <p>先保留 system、usage 与 sample 模板，按真实需求推进。</p>
+          </div>
           <div class="actions">
-            <a class="btn download-link" data-download="kimi" href="#release">模板</a>
+            <a class="btn download-link" data-download="kimi" href="#release">使用模板</a>
+            <a class="btn" href="#guide">参考</a>
           </div>
         </article>
 
         <article class="platform-row">
           <div class="platform-name">
             <h3>Coze / 扣子</h3>
+            <span class="badge">模板预留</span>
           </div>
-          <div class="platform-meta">Bot 流程集成</div>
-          <div class="platform-meta">persona + workflow</div>
+          <div class="platform-copy">
+            <p><strong>Bot 场景与流程集成。</strong></p>
+            <p>先保留 persona、workflow 与知识库模板，暂不作为主入口。</p>
+          </div>
           <div class="actions">
-            <a class="btn download-link" data-download="coze" href="#release">模板</a>
+            <a class="btn download-link" data-download="coze" href="#release">使用模板</a>
+            <a class="btn" href="#guide">参考</a>
           </div>
         </article>
 
         <article class="platform-row">
           <div class="platform-name">
             <h3>Dify</h3>
+            <span class="badge">模板预留</span>
           </div>
-          <div class="platform-meta">工作流接入</div>
-          <div class="platform-meta">system + variables</div>
+          <div class="platform-copy">
+            <p><strong>工作流与系统接入验证。</strong></p>
+            <p>先保留 system、variables 与 workflow 模板，等待接入场景明确。</p>
+          </div>
           <div class="actions">
-            <a class="btn download-link" data-download="dify" href="#release">模板</a>
+            <a class="btn download-link" data-download="dify" href="#release">使用模板</a>
+            <a class="btn" href="#guide">参考</a>
           </div>
         </article>
       </div>
       <p class="placeholder-note">当前下载与示例入口已预留真实链接位置；未接入前不会跳转到无效页面。</p>
-    </section>
-
-    <!-- priority -->
-    <section class="section" id="priority">
-      <div class="section-head">
-        <div class="section-kicker">Priority</div>
-        <div>
-          <h2 class="section-title">当前推荐</h2>
-          <p class="section-desc">如果只先推进最值得投入的版本，优先维护下面三个平台。</p>
-        </div>
-      </div>
-
-      <div class="priority-strip">
-        <div class="priority-item">
-          <h3>WPS Comate</h3>
-          <p>主生产环境，作为真实运行基线。</p>
-        </div>
-        <div class="priority-item">
-          <h3>Claude Skill</h3>
-          <p>适合文件化规则管理与版本维护。</p>
-        </div>
-        <div class="priority-item">
-          <h3>GPTs</h3>
-          <p>适合快速验证跨平台复用能力。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- platform choice -->
-    <section class="section" id="choice">
-      <div class="section-head">
-        <div class="section-kicker">Choice</div>
-        <div>
-          <h2 class="section-title">如何选择平台</h2>
-          <p class="section-desc">第一次进入时，先按使用目标选择版本，不需要同时投入所有平台。</p>
-        </div>
-      </div>
-
-      <div class="decision-list">
-        <div class="decision-item">
-          <strong>团队直接使用</strong>
-          选 WPS Comate。
-        </div>
-        <div class="decision-item">
-          <strong>维护规则文件</strong>
-          选 Claude Skill。
-        </div>
-        <div class="decision-item">
-          <strong>快速跨平台验证</strong>
-          选 GPTs。
-        </div>
-        <div class="decision-item">
-          <strong>其余平台</strong>
-          先使用模板。
-        </div>
-      </div>
     </section>
 
     <!-- guide -->
@@ -569,7 +594,22 @@
         <div class="section-kicker">Guide</div>
         <div>
           <h2 class="section-title">使用说明</h2>
-          <p class="section-desc">只保留最必要的信息，帮助团队快速选择平台、下载包并验证输出结果。</p>
+          <p class="section-desc">先完成入口判断，再导入对应版本并用示例输出做一次验证。</p>
+        </div>
+      </div>
+
+      <div class="decision-list">
+        <div class="decision-item">
+          <strong>直接给团队使用</strong>
+          从 WPS Comate 开始。
+        </div>
+        <div class="decision-item">
+          <strong>维护规则和样例</strong>
+          使用 Claude Skill。
+        </div>
+        <div class="decision-item">
+          <strong>验证跨平台效果</strong>
+          使用 GPTs。
         </div>
       </div>
 
@@ -580,18 +620,18 @@
             <button class="btn" type="button" data-copy-guide>复制说明</button>
           </div>
           <ul class="simple-list">
-            <li>先判断你要在哪个平台使用，再下载对应包。</li>
+            <li>优先进入 WPS Comate，确认是否满足本次评审场景。</li>
             <li>导入技能或提示词后，准备待审核方案文档与规则文件。</li>
-            <li>先跑示例输出，再交给团队正式使用。</li>
+            <li>先用 Compact 或 Standard 示例校准输出，再交给团队使用。</li>
           </ul>
         </div>
 
         <div class="simple-block">
           <h3>如何维护</h3>
           <ul class="simple-list">
-            <li>Core 只维护一套：角色边界、输出结构、短版约束统一维护。</li>
+            <li>Core 只维护一套：角色边界、输出结构与短版约束统一维护。</li>
             <li>WPS Comate 持续作为主生产版本。</li>
-            <li>各平台只维护格式差异与知识承载方式。</li>
+            <li>各平台只维护格式差异、入口文案与知识承载方式。</li>
           </ul>
         </div>
       </div>
@@ -639,11 +679,11 @@
       <div class="release-grid">
         <div class="release-item">
           <h3>版本</h3>
-          <p>v0.9.0</p>
+          <p>v0.9.1</p>
         </div>
         <div class="release-item">
           <h3>更新时间</h3>
-          <p>2026-05-07</p>
+          <p>2026-05-08</p>
         </div>
         <div class="release-item">
           <h3>主版本</h3>
@@ -652,7 +692,7 @@
       </div>
       <div class="release-item">
         <h3>最近更新</h3>
-        <p>完成平台分发页极简化，抽出多平台 adapter 结构，并补齐发布信息区。</p>
+        <p>首屏改为入口决策区，平台列表收敛为结果导向的使用入口。</p>
       </div>
     </section>
 
@@ -668,6 +708,11 @@
 
       <ul class="changelog">
         <li>
+          <strong>2026-05-08</strong>
+          <span>v0.9.1</span>
+          <span>首屏前置 WPS Comate 入口，压缩重复推荐说明。</span>
+        </li>
+        <li>
           <strong>2026-05-07</strong>
           <span>v0.9.0</span>
           <span>平台分发页改为极简布局，补充推荐平台、示例区与发布信息。</span>
@@ -676,11 +721,6 @@
           <strong>2026-05-06</strong>
           <span>v0.8.0</span>
           <span>抽出 Core 协议，多平台模板落盘。</span>
-        </li>
-        <li>
-          <strong>2026-05-05</strong>
-          <span>v0.7.0</span>
-          <span>WPS Comate 主版本完成收口。</span>
         </li>
       </ul>
     </section>
@@ -704,6 +744,7 @@
     document.querySelectorAll("[data-download]").forEach((link) => {
       const key = link.dataset.download;
       const url = DOWNLOAD_LINKS[key];
+      const fallback = link.dataset.fallback;
 
       if (url) {
         link.href = url;
@@ -711,6 +752,12 @@
           link.target = "_blank";
           link.rel = "noopener noreferrer";
         }
+        return;
+      }
+
+      if (fallback) {
+        link.href = fallback;
+        link.setAttribute("title", "真实入口待接入，当前跳转到平台说明");
         return;
       }
 
@@ -723,8 +770,9 @@
     document.querySelector("[data-copy-guide]")?.addEventListener("click", async (event) => {
       const button = event.currentTarget;
       const text = [
-        "如何开始：先判断使用平台，下载对应包；导入技能或提示词后，准备待审核方案文档与规则文件；先跑示例输出，再交给团队正式使用。",
-        "如何维护：Core 统一维护角色边界、输出结构与短版约束；WPS Comate 作为主生产版本；各平台只维护格式差异与知识承载方式。"
+        "入口建议：直接给团队使用选 WPS Comate；维护规则和样例选 Claude Skill；验证跨平台效果选 GPTs。",
+        "如何开始：优先进入 WPS Comate；导入技能或提示词后准备方案文档与规则文件；先用 Compact 或 Standard 示例校准输出。",
+        "如何维护：Core 统一维护角色边界、输出结构与短版约束；WPS Comate 作为主生产版本；各平台只维护格式差异、入口文案与知识承载方式。"
       ].join("\n");
 
       try {
