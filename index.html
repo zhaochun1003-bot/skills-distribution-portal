@@ -240,7 +240,7 @@
 
     .platform-row {
       display: grid;
-      grid-template-columns: 230px minmax(0,1fr) 238px;
+      grid-template-columns: 220px minmax(0,1fr) 220px;
       gap: 20px;
       align-items: center;
       min-height: 86px;
@@ -269,7 +269,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 82px;
+      width: 100px;
       height: 25px;
       margin-top: 9px;
       border-radius: 999px;
@@ -314,6 +314,23 @@
       display: flex;
       justify-content: flex-end;
       gap: 10px;
+    }
+
+    .resource-state {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 104px;
+      min-height: 36px;
+      padding: 9px 14px;
+      border: 1px solid #ececf0;
+      border-radius: 999px;
+      background: #fafafa;
+      color: var(--faint);
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .more-templates {
@@ -383,18 +400,21 @@
 
     .rule-row {
       display: grid;
-      grid-template-columns: 170px minmax(0,1fr);
+      grid-template-columns: 168px minmax(0,1fr);
       gap: 18px;
       align-items: center;
-      padding: 13px 10px;
+      padding: 14px 12px;
       border-bottom: 1px solid var(--line);
       border-radius: 12px;
       font-size: 15px;
       line-height: 1.7;
-      transition: background .18s ease;
+      transition: background .18s ease, box-shadow .18s ease;
     }
 
-    .rule-row:hover { background: rgba(244,244,245,0.72); }
+    .rule-row:hover {
+      background: rgba(255,255,255,0.9);
+      box-shadow: inset 0 0 0 1px #ededf0;
+    }
 
     .rule-row strong {
       color: var(--ink);
@@ -402,9 +422,20 @@
     }
 
     .rule-row a {
-      color: #3f4652;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      color: #27272a;
       text-decoration: none;
-      font-weight: 650;
+      font-weight: 720;
+    }
+
+    .rule-row a::after {
+      content: "↗";
+      color: #a1a1aa;
+      font-size: 12px;
+      line-height: 1;
     }
 
     .rule-row a:hover { color: var(--ink); text-decoration: underline; }
@@ -427,7 +458,7 @@
     .output-box {
       display: grid;
       grid-template-columns: 1fr 1fr auto;
-      gap: 18px;
+      gap: 24px;
       align-items: start;
       padding: 20px;
       border: 1px solid var(--line);
@@ -466,13 +497,6 @@
       font-weight: 820;
     }
 
-    .output-note {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
     .example-action {
       display: flex;
       align-items: center;
@@ -482,11 +506,11 @@
 
     /* footer */
     .footer {
-      padding: 24px 0 40px;
+      padding: 22px 0 34px;
       border-top: 1px solid var(--line);
-      color: #71717a;
-      font-size: 14px;
-      font-weight: 650;
+      color: #969ba5;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .footer .wrap {
@@ -509,6 +533,7 @@
       }
       .actions,
       .example-action { justify-content: flex-start; }
+      .resource-state { justify-content: flex-start; }
       .platform-copy strong,
       .platform-copy span,
       .template-copy strong,
@@ -549,7 +574,6 @@
       <a href="#coverage">规则</a>
       <a href="#output">输出</a>
     </nav>
-    <a class="btn primary external-link" href="https://comate.wps.cn/">进入 WPS Comate</a>
   </header>
 
   <main>
@@ -578,10 +602,10 @@
         <article class="platform-row primary">
           <div class="platform-main">
             <h3>WPS Comate</h3>
-            <span class="tag dark">默认使用</span>
+            <span class="tag dark">主入口</span>
           </div>
           <div class="platform-copy">
-            <strong>主入口，直接提交方案材料并获得结构化评审结果。</strong>
+            <strong>默认使用入口，直接在 WPS Comate 中使用评审助手。</strong>
             <span>适合日常方案自检、评审准备与体验风险识别。</span>
           </div>
           <div class="actions">
@@ -593,30 +617,32 @@
         <article class="platform-row">
           <div class="platform-main">
             <h3>Claude Skill</h3>
-            <span class="tag violet">规则维护</span>
+            <span class="tag violet">Claude 适配版</span>
           </div>
           <div class="platform-copy">
-            <strong>下载 Claude Skill 文件，用于规则维护与内容更新。</strong>
-            <span>适合维护 skill、references 与 examples。</span>
+            <strong>提供 Claude 平台适配版 Skill 文件。</strong>
+            <span>用于在 Claude 中接入相同评审能力与规则内容。</span>
           </div>
           <div class="actions">
             <a class="btn primary download-link hidden-link" data-download="claudeSkill" href="#platforms">下载 Skill</a>
             <a class="btn doc-link hidden-link" data-doc="claudeGuide" href="#platforms">说明</a>
+            <span class="resource-state">资源待接入</span>
           </div>
         </article>
 
         <article class="platform-row">
           <div class="platform-main">
             <h3>GPTs</h3>
-            <span class="tag blue">快速验证</span>
+            <span class="tag blue">GPTs 适配版</span>
           </div>
           <div class="platform-copy">
-            <strong>查看 GPTs 配置与参考内容，用于快速验证效果。</strong>
-            <span>适合轻量试跑与跨平台对齐。</span>
+            <strong>提供 GPTs 平台适配版配置与参考内容。</strong>
+            <span>用于在 GPTs 中复用相同评审逻辑与基础规则。</span>
           </div>
           <div class="actions">
             <a class="btn primary download-link hidden-link" data-download="gpts" href="#platforms">下载</a>
             <a class="btn doc-link hidden-link" data-doc="gptsReference" href="#platforms">参考</a>
+            <span class="resource-state">资源待接入</span>
           </div>
         </article>
 
@@ -634,7 +660,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">支持输入</h2>
-          <p class="section-desc">可直接提交方案材料，无需预先整理为固定格式。</p>
+          <p class="section-desc">支持直接提交 PRD、截图、功能列表与文字说明，无需预先整理格式。</p>
         </div>
       </div>
       <div class="pill-list">
@@ -673,26 +699,25 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">评审输出</h2>
-          <p class="section-desc">三种档位结构一致，仅详细程度不同。</p>
+          <p class="section-desc">默认输出结构一致，仅详细程度不同。</p>
         </div>
       </div>
 
       <div class="output-box">
         <div>
-          <h3>默认输出内容</h3>
+          <h3>默认包含</h3>
           <ul class="output-list">
             <li><strong>评审摘要</strong></li>
-            <li><strong>重点问题清单</strong></li>
-            <li><strong>规则覆盖情况</strong></li>
+            <li><strong>重点问题</strong></li>
+            <li><strong>规则覆盖</strong></li>
           </ul>
-          <p class="output-note">重点问题清单通常包含问题类型、风险等级、问题摘要、客观现象、可能影响、对应依据与建议方向。</p>
         </div>
         <div>
           <h3>输出档位</h3>
           <ul class="tier-list">
-            <li><strong>Compact：</strong>短版，适合快速同步</li>
-            <li><strong>Standard：</strong>标准版，适合日常评审</li>
-            <li><strong>Full：</strong>完整版，适合归档复盘</li>
+            <li><strong>Compact：</strong>适合快速同步</li>
+            <li><strong>Standard：</strong>适合日常评审</li>
+            <li><strong>Full：</strong>适合归档复盘</li>
           </ul>
         </div>
         <div class="example-action">
@@ -742,6 +767,12 @@
 
     applyMappedLinks(".download-link", "downloads", "download");
     applyMappedLinks(".doc-link", "docs", "doc");
+
+    document.querySelectorAll(".actions").forEach((group) => {
+      const hasVisibleLink = Array.from(group.querySelectorAll(".btn")).some((link) => !link.classList.contains("hidden-link"));
+      const state = group.querySelector(".resource-state");
+      if (state && hasVisibleLink) state.hidden = true;
+    });
 
     document.querySelectorAll('a[href^="http"]').forEach((link) => {
       link.target = "_blank";
